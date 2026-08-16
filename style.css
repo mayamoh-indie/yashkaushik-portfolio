@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -348,7 +346,7 @@ button:focus-visible {
 
 .section-card:hover { padding-left: 10px; }
 
-.section-card h3 {
+.section-card h2 {
   font-family: 'Fraunces', serif;
   font-style: italic;
   font-size: 1.15rem;
@@ -527,7 +525,7 @@ button:focus-visible {
 
 .contact-card:hover { padding-left: 10px; }
 
-.contact-card h3 {
+.contact-card h2 {
   font-family: 'Fraunces', serif;
   font-style: italic;
   font-size: 1.1rem;
@@ -551,7 +549,7 @@ button:focus-visible {
   border-top: 1px solid var(--border);
 }
 
-.contact-location h3 {
+.contact-location h2 {
   font-family: 'Fraunces', serif;
   font-style: italic;
   font-size: 1.05rem;
