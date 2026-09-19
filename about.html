@@ -4,21 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — Yash Kaushik</title>
-  <meta name="description" content="About Yash Kaushik — a Developer Experience Engineer with 6+ years of experience across game development, infrastructure automation, CI/CD reliability, and production support at EA and Ubisoft.">
+  <meta name="description" content="About Yash Kaushik — a Developer Experience Engineer with 7+ years of experience across game development, infrastructure automation, CI/CD reliability, AI platform work, and production support at EA and Ubisoft.">
+  <link rel="canonical" href="https://yashkaushik.dev/about.html">
+  <meta name="author" content="Yash Kaushik">
+  <meta name="theme-color" content="#faf8f3">
+
+  <!-- Open Graph / social link previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Yash Kaushik">
+  <meta property="og:url" content="https://yashkaushik.dev/about.html">
+  <meta property="og:title" content="About — Yash Kaushik">
+  <meta property="og:description" content="Developer Experience Engineer with 7+ years across game development, infrastructure automation, CI/CD reliability, AI platform work, and production support at EA and Ubisoft.">
+  <meta property="og:image" content="https://yashkaushik.dev/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Yash Kaushik — Developer Experience Engineer">
+  <meta property="og:locale" content="en_CA">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <nav>
     <a href="./" class="nav-logo">YK<span>.</span></a>
     <div class="nav-right">
       <ul id="primary-nav" class="nav-links">
         <li><a href="./">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="about.html" class="active" aria-current="page">About</a></li>
         <li><a href="experience.html">Experience</a></li>
+        <li><a href="projects.html">Projects</a></li>
         <li><a href="skills.html">Skills</a></li>
         <li><a href="certifications.html">Certifications</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -30,16 +52,19 @@
     </div>
   </nav>
 
-  <main class="page-wrap">
+  <main id="main-content" tabindex="-1" class="page-wrap">
     <p class="section-label">01 — About</p>
     <h1 class="page-heading">Reliable systems, friction-free tooling.</h1>
 
     <div class="about-text">
       <p>
-        I'm a Developer Experience Engineer with <strong>6+ years of experience</strong> across game development, infrastructure automation, CI/CD reliability, build engineering, and production support. My biggest win to date: refactoring a Python-based audit pipeline that cut infrastructure audit runtimes from hours to seconds across <strong>56,000+ workspaces</strong>.
+        I'm a Developer Experience Engineer with <strong>7+ years of experience</strong> across game development, infrastructure automation, CI/CD reliability, build engineering, and production support. My biggest win to date: a migration of <strong>56,000+ version control workspaces</strong> — one checked-out view of the project per developer, artist and build machine — was bottlenecked on an audit script that took hours to list what still had to move. I refactored it down to <strong>seconds</strong>, so the migration team could get a fresh list on demand instead of waiting a day for a stale one.
       </p>
       <p>
         Currently at <strong>Maxis (EA)</strong>, I support CI/CD reliability, VM provisioning, and infrastructure automation for large-scale game development, own high-severity incidents end-to-end, and help keep delivery secure with HCP Vault, DPAPI, and credential-remediation workflows across IT, security, cloud, and partner teams.
+      </p>
+      <p>
+        I also build the team's <strong>AI platform work</strong> — a grounded internal support assistant with a strict source order and a citation on every answer, prompt-injection guards, token and cost telemetry, a daily spend cap with an automatic kill switch, and a staged rollout with a gate between each stage. The design rule I care most about: if a question is outside what the system can verify, it <strong>escalates to a human instead of guessing</strong>. A confident wrong answer in a support channel is worse than no answer.
       </p>
       <p>
         Before EA, I spent close to four years at <strong>Ubisoft Toronto</strong> as a Release & Build Specialist, and before that as a Tools Support Specialist — building and supporting the build/deployment systems behind shipped titles like Far Cry 6 and XDefiant.
@@ -52,7 +77,12 @@
     <div class="certifications">
       <h2 class="section-heading">Certifications</h2>
       <p>Recently earned: <strong>Claude Certified Developer — Foundations</strong> (Anthropic).</p>
-      <p><a href="https://www.credly.com/badges/6662dbac-fc09-47ce-a47d-d33e557e9053" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">View credential on Credly</a></p>
+      <p><a href="certifications.html" class="btn btn-ghost">See all certifications</a></p>
+    </div>
+
+    <div class="page-cta">
+      <a href="projects.html" class="btn btn-primary">See what I've built</a>
+      <a href="contact.html" class="btn btn-ghost">Get in touch</a>
     </div>
   </main>
 

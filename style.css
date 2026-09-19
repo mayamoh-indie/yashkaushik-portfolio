@@ -293,6 +293,14 @@ button:focus-visible {
   margin-bottom: 64px;
 }
 
+/* Bottom-of-page call to action, same shape as .hero-cta. */
+.page-cta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 56px;
+}
+
 /* ── STATS ROW ── */
 .stats-row {
   display: flex;
@@ -464,6 +472,17 @@ button:focus-visible {
   margin-bottom: 40px;
 }
 
+.skills-intro a {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(154, 68, 41, 0.35);
+  transition: text-decoration-color 0.15s;
+}
+
+.skills-intro a:hover { text-decoration-color: var(--accent); }
+
 .skills-grid {
   display: flex;
   flex-direction: column;
@@ -560,6 +579,169 @@ button:focus-visible {
 .contact-location p {
   font-size: 0.92rem;
   color: var(--muted);
+}
+
+/* ── CERTIFICATIONS ── */
+/* Wrapper for the certifications teaser on about.html — matches .about-text width. */
+.certifications { max-width: 640px; }
+
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+}
+
+.cert-item {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cert-item h2 {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.cert-issuer {
+  font-size: 0.88rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.cert-item p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.cert-item .btn-ghost { padding-left: 0; padding-right: 0; }
+
+.cert-status {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2px 8px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* ── PROJECTS ── */
+.page-note {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 660px;
+  margin-bottom: 44px;
+  padding: 14px 18px;
+  background: var(--bg3);
+  border-radius: var(--radius);
+}
+
+.page-note strong { color: var(--text); font-weight: 500; }
+
+.project-problem {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 680px;
+  margin-bottom: 18px;
+}
+
+.project-problem strong { color: var(--text); font-weight: 500; }
+
+.project-outcome {
+  margin-top: 18px;
+  padding: 13px 18px;
+  background: var(--bg3);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.project-outcome strong { color: var(--text); font-weight: 500; }
+
+.project-outcome a {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(154, 68, 41, 0.35);
+  transition: text-decoration-color 0.15s;
+}
+
+.project-outcome a:hover { text-decoration-color: var(--accent); }
+
+/* Phase label inside a long project card, so a multi-part build reads as
+   stages rather than one flat bullet list. Matches .project-stack-label. */
+.project-phase {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 22px 0 8px;
+}
+
+.project-stack {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.project-stack-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.project-stack .tags { font-size: 0.82rem; }
+
+/* ── PRINCIPLES ── */
+.principles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.principle {
+  background: var(--bg2);
+  padding: 22px 24px;
+}
+
+.principle h3 {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.principle p {
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.65;
 }
 
 /* ── FOOTER ── */
@@ -671,6 +853,26 @@ footer {
   }
 }
 
+/* ── NAV FIT (7 items need a little more room) ── */
+@media (max-width: 1080px) and (min-width: 769px) {
+  nav { padding: 22px 28px; }
+  .nav-right { gap: 22px; }
+  .nav-links { gap: 19px; }
+  .nav-links a { font-size: 0.8rem; }
+}
+
+/* ── RESPONSIVE: projects & certifications ── */
+@media (max-width: 768px) {
+  .principles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-stack {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
 /* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -685,4 +887,20 @@ footer {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
+/* Keyboard navigation and touch targets. */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 16px;
+  z-index: 200;
+  padding: 10px 16px;
+  background: var(--text);
+  color: var(--bg2);
+  transform: translateY(-160%);
+}
+.skip-link:focus { transform: translateY(0); }
+.nav-hamburger { min-width: 44px; min-height: 44px; }
+@media (max-width: 768px) {
+  :root { --nav-height: 76px; }
 }

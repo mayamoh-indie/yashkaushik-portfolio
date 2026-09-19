@@ -4,13 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — Yash Kaushik</title>
-  <meta name="description" content="Contact Yash Kaushik — DevOps, SRE, Build Engineering and AI solutions. Based in Toronto, open to remote roles across Canada.">
+  <meta name="description" content="Contact Yash Kaushik — DevOps, SRE, Build Engineering, Developer Experience and AI platform roles. Based in Toronto, open to remote roles across Canada.">
+  <link rel="canonical" href="https://yashkaushik.dev/contact.html">
+  <meta name="author" content="Yash Kaushik">
+  <meta name="theme-color" content="#faf8f3">
+
+  <!-- Open Graph / social link previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Yash Kaushik">
+  <meta property="og:url" content="https://yashkaushik.dev/contact.html">
+  <meta property="og:title" content="Contact — Yash Kaushik">
+  <meta property="og:description" content="Open to DevOps, SRE, Build Engineering, Developer Experience, Automation and AI platform roles across Canada. Remote preferred.">
+  <meta property="og:image" content="https://yashkaushik.dev/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Yash Kaushik — Developer Experience Engineer">
+  <meta property="og:locale" content="en_CA">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <nav>
     <a href="./" class="nav-logo">YK<span>.</span></a>
@@ -19,9 +40,10 @@
         <li><a href="./">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="experience.html">Experience</a></li>
+        <li><a href="projects.html">Projects</a></li>
         <li><a href="skills.html">Skills</a></li>
         <li><a href="certifications.html">Certifications</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
       </ul>
       <a href="contact.html" class="nav-cta">Get in touch</a>
       <button class="nav-hamburger" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation" onclick="(function(btn){const nav=document.getElementById('primary-nav'); nav.classList.toggle('show'); const expanded=nav.classList.contains('show'); btn.setAttribute('aria-expanded', expanded);})(this)">
@@ -30,12 +52,17 @@
     </div>
   </nav>
 
-  <main class="page-wrap">
-    <p class="section-label">04 — Contact</p>
+  <main id="main-content" tabindex="-1" class="page-wrap">
+    <p class="section-label">06 — Contact</p>
     <h1 class="page-heading">Let's connect!</h1>
-    <p class="page-subheading">Open to DevOps, SRE, Build Engineering, Automation, AI Solutions, and Engineering Program Manager roles across Canada. Remote preferred.</p>
+    <p class="page-subheading">Open to DevOps, SRE, Build Engineering, Developer Experience, Automation, AI Platform, and Engineering Program Manager roles across Canada. Remote preferred.</p>
 
     <div class="contact-cards">
+      <a href="mailto:yash@yashkaushik.dev" class="contact-card">
+        <h2>Email</h2>
+        <span class="contact-detail">yash@yashkaushik.dev</span>
+        <span class="contact-action">Email me →</span>
+      </a>
       <a href="https://www.linkedin.com/in/ykaushik/" target="_blank" rel="noopener noreferrer" class="contact-card">
         <h2>LinkedIn</h2>
         <span class="contact-detail">Connect professionally</span>
@@ -46,11 +73,22 @@
         <span class="contact-detail">30-min discovery chat</span>
         <span class="contact-action">Schedule →</span>
       </a>
-      <a href="mailto:yash@yashkaushik.dev" class="contact-card">
-        <h2>Email</h2>
-        <span class="contact-detail">yash@yashkaushik.dev</span>
-        <span class="contact-action">Send a message →</span>
+
+      <!-- OPTIONAL: add your GitHub. Replace YOUR_USERNAME, then delete this comment.
+      <a href="https://github.com/YOUR_USERNAME" target="_blank" rel="noopener noreferrer" class="contact-card">
+        <h2>GitHub</h2>
+        <span class="contact-detail">Code &amp; side projects</span>
+        <span class="contact-action">Open profile →</span>
       </a>
+      -->
+
+      <!-- OPTIONAL: export your resume as resume.pdf into this folder, then uncomment.
+      <a href="resume.pdf" class="contact-card">
+        <h2>Resume</h2>
+        <span class="contact-detail">PDF · one page</span>
+        <span class="contact-action">Download →</span>
+      </a>
+      -->
     </div>
 
     <div class="contact-location">

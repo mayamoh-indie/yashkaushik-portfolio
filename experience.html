@@ -4,13 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Experience — Yash Kaushik</title>
-  <meta name="description" content="Yash Kaushik's professional experience — Developer Experience Engineer at Maxis (EA), Release & Build Specialist at Ubisoft Toronto, and Part-Time Professor at St. Lawrence College.">
+  <meta name="description" content="Yash Kaushik's professional experience — Developer Experience Engineer at Maxis (EA), Release &amp; Build Specialist at Ubisoft Toronto, and Part-Time Professor at St. Lawrence College.">
+  <link rel="canonical" href="https://yashkaushik.dev/experience.html">
+  <meta name="author" content="Yash Kaushik">
+  <meta name="theme-color" content="#faf8f3">
+
+  <!-- Open Graph / social link previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Yash Kaushik">
+  <meta property="og:url" content="https://yashkaushik.dev/experience.html">
+  <meta property="og:title" content="Experience — Yash Kaushik">
+  <meta property="og:description" content="Developer Experience Engineer at Maxis (EA), Release &amp; Build Specialist at Ubisoft Toronto, and Part-Time Professor at St. Lawrence College. Shipped Far Cry 6 and XDefiant.">
+  <meta property="og:image" content="https://yashkaushik.dev/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Yash Kaushik — Developer Experience Engineer">
+  <meta property="og:locale" content="en_CA">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <nav>
     <a href="./" class="nav-logo">YK<span>.</span></a>
@@ -18,7 +39,8 @@
       <ul id="primary-nav" class="nav-links">
         <li><a href="./">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="experience.html" class="active">Experience</a></li>
+        <li><a href="experience.html" class="active" aria-current="page">Experience</a></li>
+        <li><a href="projects.html">Projects</a></li>
         <li><a href="skills.html">Skills</a></li>
         <li><a href="certifications.html">Certifications</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -30,7 +52,7 @@
     </div>
   </nav>
 
-  <main class="page-wrap">
+  <main id="main-content" tabindex="-1" class="page-wrap">
     <p class="section-label">02 — Experience</p>
     <h1 class="page-heading">A timeline of building & shipping.</h1>
 
@@ -43,7 +65,7 @@
         </div>
         <div class="job-company">Maxis Studio · Electronic Arts · Toronto, ON</div>
         <ul class="job-bullets">
-          <li><strong>Infrastructure Audit Tooling:</strong> Refactored Python-based audit tooling, reducing runtime from hours to seconds across 56,000+ workspaces and improving operational visibility for engineering teams.</li>
+          <li><strong>Version Control Migration Tooling:</strong> Unblocked the migration of 56,000+ of a project's version control workspaces — one checked-out view of the project per developer, artist and build machine. The script that listed which workspaces still had to move took multiple hours per run, so the list was stale on arrival; an AI-assisted refactor cut runtime to seconds, let teams exchange an updated list on demand, and kept the cutover moving. The tool became the team's routine version control hygiene check afterwards.</li>
           <li><strong>CI/CD Provisioning:</strong> Provisioned new server environments and authored custom integration code to scale automated CI/CD pipeline tooling for a net-new studio project.</li>
           <li><strong>Infrastructure Automation:</strong> Supported CI/CD reliability, deployment tooling, VM provisioning, and automation across large-scale game development workflows.</li>
           <li><strong>Incident Management:</strong> Owned high-severity infrastructure incidents, authored post-mortems, and drove root-cause analysis and process improvements.</li>
@@ -51,8 +73,13 @@
           <li><strong>Cross-Team Collaboration:</strong> Partnered with IT, compliance, security, networking, cloud, and external partner teams to resolve blockers, support onboarding, and improve delivery workflows.</li>
           <li><strong>Observability:</strong> Used Datadog and other log analysis tools to investigate infrastructure, deployment, and service issues.</li>
           <li><strong>Secure Delivery:</strong> Supported secure delivery practices using HCP Vault / enterprise secrets services, DPAPI, access controls, and credential-remediation workflows.</li>
-          <li><strong>AI-Assisted Workflows:</strong> Contributed to AI-assisted internal support and developer-productivity workflows spanning scripting, troubleshooting, documentation, and automation.</li>
+          <li><strong>Self-Serve Support Platform:</strong> Built the support path end-to-end. A Slack intake that offers documentation before creating a ticket, caps self-declared emergencies for human review, and makes deflection measurable. An answer corpus grown from 46 to 76 entries by mining real support conversations, with the retrieval defect fixed and 16/16 user phrasings verified to return the correct document. And a grounded LLM assistant with strict source precedence, a citation on every answer, a deterministic pre-filter that resolves common questions with zero model calls, prompt-injection guards, per-request token/cost telemetry, a daily spend cap with automatic kill switch, and a staged rollout that escalates to a human rather than risk a confident wrong answer. 323 automated tests. Also ported a lighter, non-developer-editable version onto a low-code workflow platform, debugged from its own execution database, which raised one benchmark question from a 0.2-confidence escalation to a correct 0.75-confidence answer.</li>
+          <li><strong>Build-vs-Buy, Settled by Measurement:</strong> Measured the real message volume of the target channels before costing a proposed paid automation platform, and found the fixed monthly rent accounted for roughly 98% of the bill at that volume — making ownership about 50x more expensive per question than tenancy on an existing instance. Also showed the per-run charge, not the model, was the dominant cost, so the trigger shape mattered more than the prompt. The purchase request was withdrawn and the capability shipped on existing infrastructure.</li>
+          <li><strong>Self-Hosted CI Proof of Concept:</strong> Stood up a Jenkins controller from an empty state using Configuration as Code, an enterprise secrets service from day one, and separate staging/production secret paths — 16/16 verification checks pass from a wiped state, built with zero infrastructure ask. Scoped deliberately to our own team's products rather than the studio-wide build farm, and paired with a written rule for which workloads belong on CI versus a hosted workflow platform, based on which one can read a source checkout.</li>
+          <li><strong>Shared Integration Workstations:</strong> Wrote an idempotent provisioning tool for shared integration machines, designed from 43 real existing workspaces rather than assumptions — 19 workspaces verified clean on the first machine. Added an all-users toolset installer that is dry-run by default, mirrors rather than copies, skips shortcuts whose target is absent, and routes a software install through my workstation to work around a credential-delegation limit instead of relaxing security. Machines are administered non-interactively over remote management rather than a desktop session.</li>
+          <li><strong>Documentation as Code:</strong> Moved a critical administration runbook out of hand-editing and into a reviewed publish pipeline that is dry-run by default, with three publish-blocking guards tested against deliberately corrupted input.</li>
         </ul>
+        <p class="project-outcome"><strong>More detail:</strong> the design decisions and trade-offs behind this work are written up on the <a href="projects.html">Projects</a> page.</p>
       </div>
 
       <div class="job">
@@ -128,13 +155,6 @@
 
     <h2 class="section-heading">Education</h2>
     <div class="timeline">
-      <div class="job">
-        <div class="job-top">
-          <div class="job-title">Certificate in DevOps<span class="job-note">In progress — 2 of 4 courses completed</span></div>
-          <div class="job-date">2024 — Present</div>
-        </div>
-        <div class="job-company">University of Toronto</div>
-      </div>
       <div class="job">
         <div class="job-top">
           <div class="job-title">Game Development Technician Diploma</div>
