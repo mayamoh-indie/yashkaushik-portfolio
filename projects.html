@@ -57,7 +57,7 @@
     <h1 class="page-heading">Things I built, and why.</h1>
     <p class="page-subheading">Platform and developer-experience work: tooling that removes friction, automation that is safe to re-run, and AI systems with a gate in front of every risky step.</p>
 
-    <p class="page-note">This work is internal to the studios I have worked at, so I describe the <strong>problem, the design decisions and the outcome</strong> rather than proprietary detail. Happy to go deeper in conversation.</p>
+    <p class="page-note">This work is internal to the studios I have worked at, so I describe the <strong>outcome, the problem and the design decisions</strong> rather than proprietary detail. Happy to go deeper in conversation.</p>
 
     <div class="timeline">
 
@@ -68,14 +68,13 @@
           <div class="job-date">EA</div>
         </div>
         <div class="job-company">Python · version control · AI-assisted refactor · migration support</div>
-        <p class="project-problem">The project's version control workspaces had to be migrated. A <em>workspace</em> is one person's checked-out view of the project in source control — every developer, artist and build machine holds at least one, which is why a single project runs to <strong>56,000+ of them</strong>. Every migration pass needed a current list of which workspaces still had to move, and the script that fetched that list took <strong>multiple hours</strong> per run. So the list was stale before anyone could act on it, and each hand-off between teams cost most of a day in waiting.</p>
+        <p class="project-outcome"><strong>Outcome:</strong> Cut audit time for <strong>56,000+ workspaces from hours to seconds</strong>, giving migration teams a fresh list during the same conversation. The tool became a routine workspace hygiene check.</p>
+        <p class="project-problem">Migration hand-offs depended on a slow, quickly outdated list of workspaces: the source-control checkouts used by developers, artists and build machines.</p>
         <ul class="job-bullets">
-          <li><strong>Treated the slow query as the migration blocker it actually was</strong>, not as a reporting annoyance. The migration could only move as fast as the list refreshed.</li>
-          <li><strong>Refactored the fetch with AI assistance, then verified by measurement.</strong> Generated code was read, run, and timed against the real estate before it was trusted — the speed-up is a measured number, not an assumption.</li>
-          <li><strong>Moved the expensive work out of the per-record path</strong> so it happens once per run instead of 56,000 times.</li>
-          <li><strong>Kept per-record failures isolated</strong> so one bad workspace cannot abort a whole run and force a restart mid-migration.</li>
+          <li><strong>Removed repeated work:</strong> moved expensive operations out of the per-workspace path so they run once per audit.</li>
+          <li><strong>Kept the batch useful:</strong> isolated individual record failures so one bad workspace cannot abort the run.</li>
+          <li><strong>Verified the speed-up:</strong> inspected the AI-assisted refactor, ran it against the real workspace estate and measured the runtime.</li>
         </ul>
-        <p class="project-outcome"><strong>Outcome:</strong> runtime fell from hours to <strong>seconds</strong>. An updated workspace list could be produced and handed back inside the same conversation, so the migration stopped waiting on its own data and the cutover ran smoothly. The tool then became the team's routine <strong>version control hygiene check</strong> — the first time workspace cleanup was cheap enough to do as a habit rather than a project.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">
@@ -95,42 +94,14 @@
           <div class="job-date">EA</div>
         </div>
         <div class="job-company">Slack intake · retrieval grounding · injection defence · cost control · deflection metrics · low-code port</div>
-        <p class="project-problem">Engineers asked the same support questions week after week, and every repeat interrupted someone on the team. Requests arrived as free-form messages, so they were inconsistent, hard to prioritise and impossible to measure — nobody could prove which docs were actually helping. A naive chatbot would have been worse than nothing: a <strong>confident wrong answer</strong> in a support channel costs more than no answer at all. So I built the whole path, from how a request arrives to how it gets answered.</p>
-
-        <p class="project-phase">Stage one — the front door</p>
+        <p class="project-outcome"><strong>Outcome:</strong> Expanded one tool's answer coverage from <strong>10 to 31 entries</strong> and made support outcomes measurable. Intake records whether documentation resolved a request, alongside priority and tool ownership; the low-code assistant is running in <strong>shadow mode without posting</strong>.</p>
+        <p class="project-problem">Repeated questions interrupted engineers, while free-form requests made prioritisation and documentation effectiveness hard to track. I connected intake, curated answers and a grounded assistant.</p>
         <ul class="job-bullets">
-          <li><strong>Put self-serve docs in front of the ticket.</strong> The intake form offers the relevant documentation first and asks whether it resolved the issue. Only a "no" creates a ticket.</li>
-          <li><strong>Auto-triage by urgency, with a deliberate cap:</strong> anything marked highest severity is <strong>filed one level lower and flagged for human review</strong>, so a self-declared emergency cannot page the team automatically.</li>
-          <li><strong>Made deflection measurable.</strong> Resolved-by-docs outcomes are recorded too, not just escalations — otherwise the deflection rate has no denominator and the whole metric is meaningless.</li>
+          <li><strong>Documentation before escalation:</strong> offer relevant answers before creating a ticket, record both resolutions and escalations, and route highest-severity requests for human review.</li>
+          <li><strong>Answers drawn from actual support:</strong> grew the shared corpus from 46 to 76 entries using nine channels. Retrieval checks returned the right document first for <strong>16 of 16 real phrasings</strong>.</li>
+          <li><strong>Control cost and uncertainty:</strong> deterministic answers and cached replies avoid model calls; source citations, tool-identity checks, spend caps and a kill switch constrain the assistant. Unknown tools escalate to a human.</li>
+          <li><strong>Validation and rollout:</strong> 323 automated tests and offline replay support staged rollout. A smaller low-code version lets colleagues edit the workflow; shadow runs inform its confidence threshold.</li>
         </ul>
-
-        <p class="project-phase">Stage two — the answers</p>
-        <ul class="job-bullets">
-          <li><strong>Mined 9 support channels for a specific signal:</strong> issues resolved by conversation alone, with no code change, no hotfix and no filed ticket. Those are precisely the questions a self-serve answer can absorb. The corpus grew from <strong>46 to 76 entries</strong>, each tagged with the symptom, what actually resolved it, and a confidence level.</li>
-          <li><strong>Found the retrieval bug that made the corpus useless.</strong> Matching was a plain substring test, so tag-derived keywords scored zero against anything a human types. I replaced them with the short phrases people really use, then <strong>measured it: 16 of 16</strong> real phrasings returned the correct document as the top hit.</li>
-          <li><strong>Made regeneration idempotent</strong> — re-running the pipeline produces byte-identical output, so a rebuild is never a risky change. Auto-reply is gated on confidence: high-confidence entries answer automatically, medium-confidence entries require human review first.</li>
-        </ul>
-
-        <p class="project-phase">Stage three — the assistant</p>
-        <ul class="job-bullets">
-          <li><strong>Grounded answers with a strict source order:</strong> curated answers → internal wiki → source code → historical chat. Every reply cites where it came from, and lower-trust sources can never outrank current documentation.</li>
-          <li><strong>Deterministic first, model second.</strong> A rules pre-filter answers the most common questions with <strong>zero model calls</strong>. Retrieval needs no vector database either — it is keyword and file-path scoring, which costs nothing to run and is trivial to debug.</li>
-          <li><strong>Built a tool-identity gate after a dry run caught a real misfire.</strong> A question about one tool was being answered from a different tool's config file, because the two shared generic wording. Now, if a request does not name a known tool, the bot <strong>escalates to a human instead of guessing</strong>.</li>
-          <li><strong>Treated all user text as untrusted.</strong> Prompt-injection guards plus a source-link allowlist, so text written by someone else cannot widen the search scope or make the bot emit an unapproved link. A test proves an injected scope override is neutralised.</li>
-          <li><strong>Cost controls as a first-class feature:</strong> a cheap model classifies and a strong model is reserved for genuine ambiguity; per-request token and cost telemetry; a daily spend cap with an automatic kill switch. A verified answer is cached and reused for <strong>zero tokens</strong>, and expires itself when the source file it was grounded on changes.</li>
-          <li><strong>Staged rollout with a gate between stages:</strong> log-only shadow mode on real traffic → posting for high-confidence, known-tool cases only → wider coverage. A replayable fixture of real requests and a mock model mode let the whole pipeline be verified offline, so a missing credential can never block a demo.</li>
-        </ul>
-
-        <p class="project-phase">Stage four — a lighter version other people can edit</p>
-        <ul class="job-bullets">
-          <li><strong>Ported a smaller version onto a low-code workflow platform</strong> so someone who does not write Python can change the answer flow. I also said out loud what could <em>not</em> come with it: two tiers read a local source checkout, and a hosted platform cannot reach a local disk. This is a <strong>different, lighter tool, not a replacement</strong> — selling it as a replacement would have been the actual risk.</li>
-          <li><strong>Generated the workflow file from code instead of hand-writing it.</strong> Three script nodes hold around 200 lines of logic, and hand-escaping that into JSON is the most reliable way to ship a file the platform then refuses to import. The generator is the source of truth; the exported workflow is a build artefact.</li>
-          <li><strong>One question per run, oldest first</strong> — which removes the cross-node record pairing that is where these workflows usually break. The first run deliberately <strong>primes and stops</strong>, or the bot would answer the entire channel backlog on day one. A message is marked handled <em>before</em> the model call, so a crash mid-run cannot produce a double reply.</li>
-          <li><strong>Debugged by reading the platform's own execution database, not by clicking through its UI.</strong> That is how three retrieval bugs surfaced, every one of them returning a <em>successful</em> empty result: the chat search needed a channel name where an ID matched nothing at all; sorting by recency quietly shrank the result set and hid the correct answer that relevance ranking found; and documentation hits were starving chat hits out of the evidence list, so fixing the first bug alone changed nothing. <strong>The same question went from escalating at 0.2 confidence to answering correctly at 0.75.</strong></li>
-          <li><strong>Refused to tune the confidence threshold on a single example.</strong> One question at temperature zero returned 0.6 on one run and 0.7 on the next, so the threshold was sitting on the noise rather than above it. I left it untouched and collected shadow runs across different questions to set it from data.</li>
-        </ul>
-
-        <p class="project-outcome"><strong>Outcome:</strong> <strong>323 automated tests</strong>, a pipeline that can be replayed offline, and the safety property the rollout depends on — an unknown tool escalates rather than answers. Intake now captures priority, owning tool and outcome on every request, so deflection rate, escalation volume and tool hotspots come from data the workflow records itself. One tool's answer coverage went from <strong>10 entries to 31</strong>. The low-code version runs end to end on real messages in <strong>shadow mode, posting nothing</strong>.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">
@@ -158,16 +129,13 @@
           <div class="job-date">EA</div>
         </div>
         <div class="job-company">Cost modelling · demand measurement · platform research</div>
-        <p class="project-problem">The team was about to request a paid automation platform of its own — a fixed monthly fee per environment, plus a charge on every single run. The proposal read well. What nobody had done was <strong>measure how much traffic the thing would actually serve</strong>, and a per-run charge is only cheap if you know the number of runs.</p>
+        <p class="project-outcome"><strong>Outcome:</strong> Withdrew a separate platform purchase request after <strong>less than a day of measurement</strong> and used existing infrastructure. At measured demand, owning two environments would cost roughly <strong>50 times more per question</strong> than shared tenancy.</p>
+        <p class="project-problem">The proposed automation platform charged both monthly rent and per execution. I checked actual support demand before committing to a separate instance.</p>
         <ul class="job-bullets">
-          <li><strong>Counted real demand before costing anything.</strong> I pulled the actual message history of the target channels instead of estimating from impressions. They were <strong>quiet</strong> — the busiest one carried a few dozen messages a month, which reduced to roughly a dozen genuine questions.</li>
-          <li><strong>Found the fixed cost was the whole bill.</strong> At real volume the monthly rent worked out to about <strong>98%</strong> of the total, so owning a pair of environments cost roughly <strong>50x more per question</strong> than being a tenant on an instance that already existed. The intuition that heavy usage justifies ownership is exactly backwards for a quiet support channel.</li>
-          <li><strong>Priced the trigger shape, because that is what the charge is levied on.</strong> A short polling interval bills on every tick whether or not anyone asked a question, which made it the most expensive option by an order of magnitude. An event-driven trigger costs nothing while a channel is idle — a <strong>one-node change</strong> that was worth more than every other optimisation combined.</li>
-          <li><strong>Measured the model cost too, and it was the smaller number</strong> — around <strong>8x less</strong> than the platform's own per-run fee. So tightening the prompt was pointless and reducing the number of runs was everything. Knowing which number to chase is most of the work.</li>
-          <li><strong>Checked what already existed before buying.</strong> An instance owned by another team was already open to us, and the platform team's own dashboards gave real cost and execution figures rather than my projections. <strong>The purchase request was cancelled.</strong></li>
-          <li><strong>Did the noisy iteration locally in containers, where runs are free</strong>, pinned to the same platform version as the hosted instance — so experiments cost nothing and the finished workflow still imported cleanly. I also raised the overlap with our own CI work honestly, because it weakened my own earlier argument for buying.</li>
+          <li><strong>Costed real usage:</strong> channel history showed roughly a dozen genuine questions a month in the busiest channel; fixed fees represented about 98% of the projected bill.</li>
+          <li><strong>Targeted the largest cost:</strong> compared polling with event-driven triggers that avoid idle runs. Model usage cost around eight times less than the platform's per-run fee.</li>
+          <li><strong>Reused available capacity:</strong> checked the existing platform's dashboards and tenancy options, then iterated locally in containers pinned to its version.</li>
         </ul>
-        <p class="project-outcome"><strong>Outcome:</strong> a purchase request <strong>withdrawn on measured evidence</strong> rather than on opinion, and the same capability delivered as a tenancy on existing infrastructure at a fraction of the cost per question. The measurement took under a day. The uncomfortable part is the useful part: the numbers argued against the plan I had brought in.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">
@@ -188,16 +156,13 @@
           <div class="job-date">EA</div>
         </div>
         <div class="job-company">Jenkins · Configuration as Code · secrets from day one · deliberate scope</div>
-        <p class="project-problem">The team wanted to own its own CI instead of depending on an ageing shared system. The blocker was not technical — it was a <strong>maintenance-cost objection</strong> from leadership. Arguing was not going to move it. Scope was the other half of the problem: this covers <strong>our own team's products only</strong>, not the studio-wide build farm, and saying so early is what kept the proposal small enough to be credible.</p>
+        <p class="project-outcome"><strong>Outcome:</strong> Built a <strong>reproducible CI proof of concept without requesting new infrastructure</strong>, giving the team a working system to evaluate. Production rollout remains subject to approval.</p>
+        <p class="project-problem">The team needed an alternative to an ageing shared CI system, with maintenance cost as the main objection. I scoped the proposal to the team's own products.</p>
         <ul class="job-bullets">
-          <li><strong>Answered the objection with a working system instead of a document.</strong> Built a local sandbox that stands the whole controller up from an empty state.</li>
-          <li><strong>Everything as code.</strong> Credentials and jobs are declared in a config file and never clicked into the UI, so the configuration is reviewable and reproducible.</li>
-          <li><strong>Enterprise secrets service from day one</strong>, with <strong>zero</strong> credentials carried over from the old repository — and separate secret paths for staging and production.</li>
-          <li><strong>Wrote the verification script first</strong>, so "it works" is a command anyone can run, not an opinion.</li>
-          <li><strong>Designed the runner topology around a real constraint:</strong> Windows-only builds need agents that inherit a domain identity, which a Linux container cannot provide. The topology reflects that instead of fighting it.</li>
-          <li><strong>Wrote down which system gets which job, on one capability rather than on preference.</strong> A build agent can be given a checkout of the source depot; a hosted workflow service cannot reach one. So scheduled work and anything that must read source goes here, and live chat listen-and-reply or anything a non-developer needs to edit goes to the workflow platform. This split cut against my own earlier argument for buying a second platform, which is the main reason I trust it.</li>
+          <li><strong>Rebuild from an empty state:</strong> declare jobs and configuration as code, with enterprise-managed secrets and separate staging and production paths.</li>
+          <li><strong>Fit the workload:</strong> account for Windows agents that require domain identity, and assign source-dependent jobs to CI while keeping editable chat workflows on the workflow platform.</li>
+          <li><strong>Validation:</strong> all 16 checks pass from a wiped state, making the prototype repeatable for reviewers. These checks establish readiness for evaluation, not production deployment.</li>
         </ul>
-        <p class="project-outcome"><strong>Outcome:</strong> <strong>16 of 16 checks pass from a wiped state.</strong> A working proof built with <strong>zero infrastructure ask</strong> — which was the direct answer to the maintenance-cost objection. It is still a proof of concept: the production instance depends on approvals I do not control, and the proposal says that plainly instead of assuming them.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">
@@ -218,20 +183,13 @@
           <div class="job-date">EA</div>
         </div>
         <div class="job-company">Idempotent provisioning · evidence-led design · shared-machine security · remote administration</div>
-        <p class="project-problem">Technical directors ran a legacy integration script on whatever machine they happened to have. Setup drifted per machine, so results were inconsistent and failures were hard to reproduce.</p>
+        <p class="project-outcome"><strong>Outcome:</strong> Provisioned the first shared machine with <strong>19 workspaces verified clean</strong> and a shared toolset checked in place. Repeatable setup replaces machine-specific manual configuration; one interactive first-run step and the second machine remain.</p>
+        <p class="project-problem">A legacy integration script ran on individually configured machines, making inconsistent results difficult to reproduce.</p>
         <ul class="job-bullets">
-          <li><strong>Wrote an idempotent provisioning tool.</strong> Re-running it reports "already matches" and changes nothing. Safe to run any number of times.</li>
-          <li><strong>Designed from live data, not assumptions.</strong> Read <strong>43 real existing workspaces</strong> to learn the actual mapping convention before writing a line of the tool — which is how the naming rule and the shared-path requirement were discovered rather than guessed.</li>
-          <li><strong>Deliberately left syncing out.</strong> The integration script already syncs when it runs; duplicating that would have made setup slow and fragile for no gain.</li>
-          <li><strong>Shipped a drag-and-drop setup kit</strong> that installs to the <strong>all-users</strong> desktop, so every person on a shared box gets the same tools. It skips shortcuts whose target is missing rather than leaving dead links behind — and that branch has now fired on a real machine, where one tool genuinely was not present yet.</li>
-          <li><strong>Administered the machines over remote management rather than a remote desktop session.</strong> Commands run non-interactively, so setup is scriptable and repeatable, and it sidesteps a clipboard defect in the desktop session that was quietly corrupting pasted commands. Read-only probe scripts run first, so I look before I touch.</li>
-          <li><strong>Worked around a credential-delegation limit instead of weakening security to beat it.</strong> A remote session on the target machine cannot reach the software share — a second network hop with no delegated credential — but my own workstation can read the share and write to the target. So the installer routes through the workstation as a middle hop, then verifies the result back on the machine. It is <strong>dry run by default</strong>, mirrors rather than copies so a re-install leaves nothing stale behind, and needs an explicit flag to write anything.</li>
-          <li><strong>Read the vendor package before trusting it, which turned out to matter.</strong> Its own helper script decides which product's executable to launch by reading the name of the folder it sits in, and the release shipped leftover scripts pointing at a sibling product's paths entirely. Installing to a sensible-looking path would have silently run the wrong application. The install pins the exact folder name and launches the binary directly.</li>
-          <li><strong>Stopped the automation where honesty required it.</strong> One tool is a tray application whose first run is interactive, so the installer deliberately does not start it — a person launches it once and confirms the drive it maps. Claiming full automation there would have produced a machine that looked provisioned and was not.</li>
-          <li><strong>Chose managed cloud secrets over a local plaintext file</strong> — on a machine many people share, a readable secret file also defeats rotation and leaves no audit trail. This cost more setup effort and was the right trade.</li>
-          <li><strong>Documented the real blockers honestly</strong>, including one broken configuration that predated the work and belonged to another team, with an explanation of why the obvious quick fix would have silently routed files to the wrong place.</li>
+          <li><strong>Use the real conventions:</strong> inspected 43 existing workspaces before writing idempotent provisioning. Re-running leaves matching configuration unchanged; syncing stays with the integration script.</li>
+          <li><strong>Give users consistent tools:</strong> install the shared kit for all users, skip missing shortcut targets, and verify installed file counts and versions by script.</li>
+          <li><strong>Respect security boundaries:</strong> use managed secrets and dry-run installation, route transfers through an authorised workstation, and leave the tray application's first launch to a person.</li>
         </ul>
-        <p class="project-outcome"><strong>Outcome:</strong> <strong>19 workspaces verified clean</strong> on the first machine, from a repeatable tool rather than manual setup. The shared toolset is installed and <strong>verified in place</strong> on that machine — file count and version checked by script rather than eyeballed — with one interactive first-run step left to a human by design. The second machine is next.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">
@@ -252,15 +210,13 @@
           <div class="job-date">EA</div>
         </div>
         <div class="job-company">Docs as code · publish guards · technical writing</div>
-        <p class="project-problem">A critical administration runbook was edited by hand in the wiki. It drifted, changes could not be reviewed, and a bad edit went live with nothing to catch it.</p>
+        <p class="project-outcome"><strong>Outcome:</strong> Published a reviewed runbook with <strong>separate paths for users and administrators</strong>. Publish guards now block malformed documents and missing or unexpected figure references before they reach readers.</p>
+        <p class="project-problem">Manual wiki edits let a critical administration runbook drift and sent mistakes straight to readers. I moved authoring and publishing into a reviewable pipeline.</p>
         <ul class="job-bullets">
-          <li><strong>Moved the page into source files.</strong> It is now generated and published from disk, never edited in the wiki UI, so a change gets reviewed like code.</li>
-          <li><strong>Wrote a publisher that is dry-run by default.</strong> It only writes when explicitly told to, and it uses the standard library only, so it runs anywhere without a dependency install.</li>
-          <li><strong>Added three publish-blocking guards:</strong> the document must be well-formed; every original figure must still be referenced; and no figure may point outside the known attachment list. <strong>All three were tested against deliberately corrupted input</strong> — a guard nobody has tried to break is not a guard.</li>
-          <li><strong>Rewrote the page for two distinct audiences</strong> and split it accordingly, with <strong>23 figures</strong>, so a first-time user and an administrator each have a path that fits them.</li>
-          <li><strong>Simplified the routing advice</strong> so users have one obvious place to go, instead of three tools with unclear ownership.</li>
+          <li><strong>Review changes like code:</strong> generate the wiki page from source files and publish through a standard-library Python tool that defaults to dry run.</li>
+          <li><strong>Validate before publishing:</strong> tested all three guards against deliberately corrupted input, covering document structure and preservation of the 23 figures.</li>
+          <li><strong>Make guidance easier to follow:</strong> separate first-time user instructions from administration tasks and give readers one clear route for help.</li>
         </ul>
-        <p class="project-outcome"><strong>Outcome:</strong> published live with 23 figures. A broken publish is now caught <strong>before</strong> it reaches readers rather than reported by them afterwards.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">

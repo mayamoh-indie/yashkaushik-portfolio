@@ -36,16 +36,16 @@ to Netlify. Nothing has been deployed by this merge.
 
 ## Review follow-ups
 
-- Make the six Projects case studies easier to scan: a short summary and
-  outcome first, with implementation details available below.
-- Add a resume PDF and a public code sample when available. Contact already
-  contains inactive placeholders; do not enable them until their targets exist.
+- Add a public code sample when available. Contact contains an inactive GitHub
+  placeholder; enable it only when its target exists.
 - Focus the contact-page role list around your primary Developer Experience
   positioning; it currently ranges from SRE to Engineering Program Manager.
-- In case studies, distinguish outcome metrics from validation evidence:
-  automated test counts demonstrate checks, while time saved shows impact.
 - Visually test all pages at mobile and desktop widths, including keyboard
   operation of the mobile menu, before publishing.
 
 The merge adds skip links, current-page navigation semantics, larger mobile
 menu targets and semantic project headings without changing career claims.
+
+The portfolio serves as the resume; no downloadable resume is planned.
+Project summaries lead with outcomes and separate validation evidence from
+user impact, with prototype and rollout limitations stated explicitly.
