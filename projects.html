@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects | Yash Kaushik</title>
-  <meta name="description" content="Case studies in infrastructure automation, AI-assisted support, platform cost analysis, CI/CD, workstation provisioning, and documentation as code.">
+  <meta name="description" content="Developer support case studies by Yash Kaushik, including a public Sentry troubleshooting demo, AI-assisted ticket triage, and a reviewed support runbook.">
   <link rel="canonical" href="https://yashkaushik.dev/projects.html">
   <meta name="author" content="Yash Kaushik">
   <meta name="theme-color" content="#faf8f3">
@@ -14,11 +14,11 @@
   <meta property="og:site_name" content="Yash Kaushik">
   <meta property="og:url" content="https://yashkaushik.dev/projects.html">
   <meta property="og:title" content="Projects | Yash Kaushik">
-  <meta property="og:description" content="Case studies in infrastructure automation, AI-assisted support, platform cost analysis, CI/CD, workstation provisioning, and documentation as code.">
+  <meta property="og:description" content="Developer support case studies by Yash Kaushik, including a public Sentry troubleshooting demo, AI-assisted ticket triage, and a reviewed support runbook.">
   <meta property="og:image" content="https://yashkaushik.dev/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Yash Kaushik, DevOps &amp; Developer Experience Engineer">
+  <meta property="og:image:alt" content="Yash Kaushik, Developer Support &amp; Technical Enablement">
   <meta property="og:locale" content="en_CA">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -54,38 +54,37 @@
 
   <main id="main-content" tabindex="-1" class="page-wrap">
     <p class="section-label">Projects</p>
-    <h1 class="page-heading">Selected engineering projects</h1>
-    <p class="page-subheading">Case studies from my time at Electronic Arts (Maxis) in infrastructure automation, developer support, CI/CD, and technical documentation.</p>
+    <h1 class="page-heading">Support and engineering case studies</h1>
+    <p class="page-subheading">Try a public troubleshooting exercise, then see how I handled recurring support questions and infrastructure problems at Electronic Arts (Maxis).</p>
 
-    <section class="timeline" aria-label="Professional case studies">
-      <article class="job" id="version-control-audit">
+    <section class="timeline" aria-label="Public project">
+      <article class="job" id="sentry-troubleshooting">
         <div class="job-top">
-          <h2 class="job-title">Version control audit optimization</h2>
-          <div class="job-date">EA</div>
+          <h2 class="job-title">Tracing an HTTP 500 from request to cause</h2>
+          <div class="job-date">Public demo</div>
         </div>
-        <p class="project-outcome">Cut a version control audit from <strong>hours to seconds</strong>, giving migration teams an updated list on demand.</p>
-        <p class="project-problem">Migration handoffs relied on a report that could take hours to generate. The outstanding workspaces could change before the report arrived.</p>
-        <p class="project-problem">I refactored the Python script to run expensive operations once per audit and isolate individual record failures. I reviewed the AI-assisted changes and measured the runtime on migration data.</p>
-        <p class="project-problem"><strong>Status.</strong> The result measures the audit runtime during the migration.</p>
+        <p class="project-outcome">A repeatable SDK troubleshooting exercise using synthetic orders in a small FastAPI service.</p>
+        <p class="project-problem">Request order 123 to see a successful response, then request order 999 to trigger a server error. Follow the traceback to the inventory validation step. The sample response contains an unexpected inventory state.</p>
+        <p class="project-problem">If the error occurs locally but the event is missing in Sentry, the guide walks through configuration, environment filters, and delivery checks. The offline tests verify the captured exception, application frames, and request context. Live delivery requires a configured Sentry project.</p>
+        <p class="project-outcome"><a href="https://github.com/mayamoh-indie/sentry-python-support-demo#reproduce-and-inspect">Reproduce the failure and inspect the evidence on GitHub</a></p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Version control tooling</span>
-            <span class="tag">Profiling</span>
-            <span class="tag">Windows Server</span>
-          </div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Sentry SDK</span><span class="tag">pytest</span></div>
         </div>
       </article>
+    </section>
 
+    <h2 class="section-heading">Work at EA Maxis</h2>
+    <section class="timeline" aria-label="Professional case studies">
       <article class="job" id="ai-assisted-support">
         <div class="job-top">
-          <h2 class="job-title">AI-assisted internal support platform</h2>
+          <h2 class="job-title">Triaging recurring support requests in Slack</h2>
           <div class="job-date">EA</div>
         </div>
         <p class="project-outcome">Improved <strong>documented answer coverage by 210% for one internal tool</strong>. The intake workflow also recorded whether documentation resolved a request or it needed escalation.</p>
         <p class="project-problem">Engineers fielded repeated support questions, and free-form requests made it hard to prioritize issues or tell whether documentation helped.</p>
-        <p class="project-problem">I built a Slack intake that offered documentation before ticket creation and routed urgent requests for human review. I built and tested a support assistant that cited internal sources, used rules and cached answers for common requests, and escalated uncertain answers. I used Claude through an existing AWS Bedrock setup. I added input safeguards, usage monitoring, and spend controls, and used offline replay to check retrieval and responses.</p>
+        <p class="project-problem">When someone asked for help in Slack, the workflow offered documentation before opening a Jira ticket. Urgent requests went to a person. For common questions, the assistant used rules and cached answers. When it used Claude through AWS Bedrock, it cited internal sources and escalated uncertain answers.</p>
+        <p class="project-problem">I replayed past requests offline to check which documents the assistant retrieved and how it answered. I also added input safeguards, usage monitoring, and spend controls.</p>
         <p class="project-problem"><strong>Status.</strong> In trial mode, I confirmed the low-code version could return useful answers. It was <strong>ready for production</strong> when my role at EA ended, before rollout.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
@@ -102,6 +101,46 @@
             <span class="tag">YAML</span>
             <span class="tag">pytest</span>
             <span class="tag">Docker</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="job" id="documentation-pipeline">
+        <div class="job-top">
+          <h2 class="job-title">Keeping a troubleshooting runbook accurate</h2>
+          <div class="job-date">EA</div>
+        </div>
+        <p class="project-outcome">Published a reviewed runbook with <strong>separate instructions for users and administrators</strong>. Validation blocked malformed documents and unexpected or missing figure references before publication.</p>
+        <p class="project-problem">A manually edited wiki runbook had drifted, and changes could reach readers before anyone reviewed them.</p>
+        <p class="project-problem">I moved authoring into source control, generated the wiki page with a standard-library Python tool that defaulted to dry run, and tested the publish checks against deliberately malformed input.</p>
+        <p class="project-problem"><strong>Status.</strong> The workflow was used to publish the runbook.</p>
+        <div class="project-stack">
+          <span class="project-stack-label">Stack</span>
+          <div class="tags">
+            <span class="tag">Python standard library</span>
+            <span class="tag">Confluence REST API</span>
+            <span class="tag">XML</span>
+            <span class="tag">Docs as code</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="job" id="version-control-audit">
+        <div class="job-top">
+          <h2 class="job-title">Version control audit optimization</h2>
+          <div class="job-date">EA</div>
+        </div>
+        <p class="project-outcome">Cut a version control audit from <strong>hours to seconds</strong>, giving migration teams an updated list on demand.</p>
+        <p class="project-problem">Migration handoffs relied on a report that could take hours to generate. The outstanding workspaces could change before the report arrived.</p>
+        <p class="project-problem">I refactored the Python script to run expensive operations once per audit and isolate individual record failures. I reviewed the AI-assisted changes and measured the runtime on migration data.</p>
+        <p class="project-problem"><strong>Status.</strong> The result measures the audit runtime during the migration.</p>
+        <div class="project-stack">
+          <span class="project-stack-label">Stack</span>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Version control tooling</span>
+            <span class="tag">Profiling</span>
+            <span class="tag">Windows Server</span>
           </div>
         </div>
       </article>
@@ -169,26 +208,6 @@
             <span class="tag">PowerShell</span>
             <span class="tag">Managed secrets</span>
             <span class="tag">IAM</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="job" id="documentation-pipeline">
-        <div class="job-top">
-          <h2 class="job-title">Documentation as a reviewed pipeline</h2>
-          <div class="job-date">EA</div>
-        </div>
-        <p class="project-outcome">Published a reviewed runbook with <strong>separate instructions for users and administrators</strong>. Validation blocked malformed documents and unexpected or missing figure references before publication.</p>
-        <p class="project-problem">A manually edited wiki runbook had drifted, and changes could reach readers before anyone reviewed them.</p>
-        <p class="project-problem">I moved authoring into source control, generated the wiki page with a standard-library Python tool that defaulted to dry run, and tested the publish checks against deliberately malformed input.</p>
-        <p class="project-problem"><strong>Status.</strong> The workflow was used to publish the runbook.</p>
-        <div class="project-stack">
-          <span class="project-stack-label">Stack</span>
-          <div class="tags">
-            <span class="tag">Python standard library</span>
-            <span class="tag">Confluence REST API</span>
-            <span class="tag">XML</span>
-            <span class="tag">Docs as code</span>
           </div>
         </div>
       </article>

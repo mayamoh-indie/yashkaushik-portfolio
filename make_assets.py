@@ -51,8 +51,8 @@ OG_SIZE: Tuple[int, int] = (1200, 630)
 MARGIN = 88
 
 NAME = "Yash Kaushik"
-ROLE = "DevOps & Developer Experience Engineer"
-TAGLINE = "AI Enablement  \u00b7  Platform Engineering  \u00b7  Technical Support"
+ROLE = "Developer Support & Technical Enablement"
+TAGLINE = "Incident response  \u00b7  Support automation  \u00b7  Customer training"
 DOMAIN = "yashkaushik.dev"
 
 ICON_SIZES: Sequence[int] = (16, 32, 48)
