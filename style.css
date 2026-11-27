@@ -333,6 +333,11 @@ button:focus-visible {
   line-height: 1.35;
 }
 
+/* ── SELECTED WORK (home) ── */
+.selected-work { margin-bottom: 56px; }
+
+.selected-work p + p { margin-top: 12px; }
+
 /* ── SECTION CARDS (home) ── */
 .section-cards {
   display: flex;
@@ -673,7 +678,8 @@ button:focus-visible {
 
 .project-outcome + .project-problem { margin-top: 18px; }
 
-.project-outcome a {
+.project-outcome a,
+.selected-work a {
   color: var(--accent);
   font-weight: 500;
   text-decoration: underline;
@@ -682,7 +688,8 @@ button:focus-visible {
   transition: text-decoration-color 0.15s;
 }
 
-.project-outcome a:hover { text-decoration-color: var(--accent); }
+.project-outcome a:hover,
+.selected-work a:hover { text-decoration-color: var(--accent); }
 
 /* Phase label inside a long project card, so a multi-part build reads as
    stages rather than one flat bullet list. Matches .project-stack-label. */
