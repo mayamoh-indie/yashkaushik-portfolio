@@ -85,15 +85,14 @@
         </div>
         <p class="project-outcome">Improved <strong>documented answer coverage by 210% for one internal tool</strong>. The intake workflow also recorded whether documentation resolved a request or it needed escalation.</p>
         <p class="project-problem">Engineers fielded repeated support questions, and free-form requests made it hard to prioritize issues or tell whether documentation helped.</p>
-        <p class="project-problem">I built a Slack intake that offered documentation before ticket creation and routed urgent requests for human review. I built and tested a Claude assistant that cited internal sources, used rules and cached answers for common requests, and escalated uncertain answers. I added input safeguards, usage monitoring, and spend controls, and used offline replay to check retrieval and responses.</p>
-        <p class="project-problem"><strong>Status.</strong> The low-code version was evaluated in <strong>shadow mode without posting replies</strong>. The work supported a staged rollout. The coverage result measures documentation for the single tool.</p>
+        <p class="project-problem">I built a Slack intake that offered documentation before ticket creation and routed urgent requests for human review. I built and tested a support assistant that cited internal sources, used rules and cached answers for common requests, and escalated uncertain answers. I used Claude through an existing AWS Bedrock setup. I added input safeguards, usage monitoring, and spend controls, and used offline replay to check retrieval and responses.</p>
+        <p class="project-problem"><strong>Status.</strong> In trial mode, I confirmed the low-code version could return useful answers. It was <strong>ready for production</strong> when my role at EA ended, before rollout.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">
             <span class="tag">Python</span>
             <span class="tag">uv</span>
             <span class="tag">SQLite</span>
-            <span class="tag">AWS Bedrock</span>
             <span class="tag">Claude</span>
             <span class="tag">Slack Web API</span>
             <span class="tag">Slack Workflow Builder</span>
