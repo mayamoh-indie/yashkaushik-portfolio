@@ -8,15 +8,20 @@ Run before uploading. Every check is deterministic and offline.
 Exit code 0 = all checks passed, 1 = at least one FAIL.
 """
 
+import json
 import os
 import re
 import struct
 import sys
 import xml.etree.ElementTree as ElementTree
+from html import unescape
 from html.parser import HTMLParser
 from typing import Dict, List, Optional, Set, Tuple
+from urllib.parse import urlsplit
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+SITE_URL = "https://yashkaushik.dev/"
+GITHUB_PROFILE = "https://github.com/mayamoh-indie"
 
 PAGES: Tuple[str, ...] = (
     "index.html",
@@ -50,6 +55,7 @@ NAV_ITEMS: Tuple[str, ...] = (
 
 EXPECTED_FILES: Tuple[str, ...] = PAGES + (
     "style.css",
+    "CNAME",
     "_redirects",
     "robots.txt",
     "sitemap.xml",
@@ -57,6 +63,19 @@ EXPECTED_FILES: Tuple[str, ...] = PAGES + (
     "favicon.ico",
     "apple-touch-icon.png",
     "og.png",
+)
+
+OBSOLETE_COPY = re.compile(
+    r"\b(?:6|7)\s*\+?\s*years\b|"
+    r"\b300\s*\+?\s*(?:h\b|hours?\b)|"
+    r"\b56\s*k\b|\b56(?:[,.\s\u00a0\u202f]?)000\b|"
+    r"\b323\s*(?:automated\s+)?tests?\b|"
+    r"\b(?:current(?:ly)?|present)\s+(?:(?:work(?:s|ing)?|teach(?:es|ing)?)\s+)?"
+    r"(?:at\s+)?(?:EA\b|Electronic Arts|Maxis|St\. Lawrence College)|"
+    r"\b(?:I\s+(?:also\s+)?teach|Engineering Program Manager)\b|"
+    r"\bJan(?:uary)?\s+2025\s*(?:to|[–—-])\s*present\b|"
+    r"\b(?:based|located)\s+in\s+Toronto\b",
+    re.IGNORECASE,
 )
 
 failures: List[str] = []
@@ -82,8 +101,30 @@ class TagBalanceParser(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.stack: List[str] = []
         self.errors: List[str] = []
+        self.ids: Set[str] = set()
+        self.duplicate_ids: Set[str] = set()
+        self.meta: Dict[str, str] = {}
+        self.canonicals: List[str] = []
+        self.links: List[str] = []
+        self.counts: Dict[str, int] = {}
 
-    def handle_starttag(self, tag: str, attrs: object) -> None:
+    def handle_starttag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]) -> None:
+        self.counts[tag] = self.counts.get(tag, 0) + 1
+        attributes = dict(attrs)
+        element_id = attributes.get("id")
+        if element_id:
+            if element_id in self.ids:
+                self.duplicate_ids.add(element_id)
+            self.ids.add(element_id)
+        if tag == "meta":
+            name = attributes.get("property") or attributes.get("name")
+            if name:
+                self.meta[name] = attributes.get("content") or ""
+        href = attributes.get("href")
+        if tag == "link" and attributes.get("rel") == "canonical":
+            self.canonicals.append(href or "")
+        if tag == "a" and href:
+            self.links.append(href)
         if tag not in VOID_TAGS:
             self.stack.append(tag)
 
@@ -148,6 +189,7 @@ def check_pages() -> None:
     """
     Per-page structure, metadata, navigation and link checks.
     """
+    parsed = {}
     for page in PAGES:
         path = os.path.join(ROOT, page)
         if not os.path.isfile(path):
@@ -158,6 +200,7 @@ def check_pages() -> None:
 
         parser = TagBalanceParser()
         parser.feed(html)
+        parsed[page] = parser
         check(
             "{0}: tags balanced".format(page),
             not parser.errors and not parser.stack,
@@ -184,9 +227,61 @@ def check_pages() -> None:
                 "broken link",
             )
 
-        check("{0}: no stale '6+ years'".format(page), "6+ years" not in html)
-        check("{0}: has a title".format(page), "<title>" in html)
+        text_only = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", live))
+        stale = OBSOLETE_COPY.search(html) or OBSOLETE_COPY.search(text_only)
+        check(f"{page}: no obsolete copy", stale is None, stale[0] if stale else "")
+        check(f"{page}: one title, main and h1",
+              all(parser.counts.get(tag) == 1 for tag in ("title", "main", "h1")))
+        check(f"{page}: unique IDs", not parser.duplicate_ids, str(parser.duplicate_ids))
+        check(f"{page}: skip link", "#main-content" in parser.links and "main-content" in parser.ids)
+        check(f"{page}: active page is announced", live.count('aria-current="page"') == 1)
         check("{0}: lang set".format(page), '<html lang="en">' in html)
+        canonical = page_url(page)
+        check(f"{page}: canonical and OG URLs match", parser.canonicals == [canonical]
+              and parser.meta.get("og:url") == canonical)
+        title = re.search(r"<title>([^<]+)</title>", html)
+        check(f"{page}: OG title matches", bool(title) and parser.meta.get("og:title") == unescape(title[1]))
+        check(f"{page}: descriptions match", bool(parser.meta.get("description"))
+              and parser.meta["description"] == parser.meta.get("og:description"))
+        check(f"{page}: shared social card", parser.meta.get("og:image") == SITE_URL + "og.png"
+              and bool(parser.meta.get("og:image:alt")))
+
+    for page, parser in parsed.items():
+        for href in parser.links:
+            link = urlsplit(href)
+            if link.fragment and not (link.scheme or link.netloc):
+                target = link.path or page
+                if target in ("./", "/"):
+                    target = "index.html"
+                check(f"{page}: fragment {href}", target in parsed and link.fragment in parsed[target].ids)
+
+    check_home_json_ld()
+    check("contact: public GitHub profile", "contact.html" in parsed
+          and GITHUB_PROFILE in parsed["contact.html"].links)
+
+
+def page_url(page: str) -> str:
+    return SITE_URL if page == "index.html" else SITE_URL + page
+
+
+def check_home_json_ld() -> None:
+    blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>',
+                        read("index.html"), flags=re.DOTALL)
+    try:
+        person = json.loads(blocks[0]) if len(blocks) == 1 else None
+    except json.JSONDecodeError:
+        person = None
+    valid = isinstance(person, dict) and person.get("@type") == "Person"
+    check("homepage JSON-LD: valid Person object", valid)
+    if not valid:
+        return
+    address = person.get("address")
+    check("homepage JSON-LD: Barrie address", isinstance(address, dict)
+          and address.get("addressLocality") == "Barrie"
+          and address.get("addressRegion") == "ON" and address.get("addressCountry") == "CA")
+    check("homepage JSON-LD: public profile and no current employer",
+          person.get("url") == SITE_URL and "worksFor" not in person
+          and isinstance(person.get("sameAs"), list) and GITHUB_PROFILE in person["sameAs"])
 
 
 def check_sitemap() -> None:
@@ -202,13 +297,10 @@ def check_sitemap() -> None:
 
     namespace = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
     locs = [node.text or "" for node in tree.getroot().findall(".//sm:loc", namespace)]
-    listed = set()
-    for loc in locs:
-        tail = loc.rsplit("/", 1)[-1]
-        listed.add(tail if tail else "index.html")
-
-    check("sitemap lists every page", listed == set(PAGES),
-          "missing {0} / extra {1}".format(set(PAGES) - listed, listed - set(PAGES)))
+    expected = {page_url(page) for page in PAGES}
+    check("sitemap lists each canonical URL once", len(locs) == len(expected) and set(locs) == expected)
+    check("CNAME matches the canonical domain", read("CNAME").strip() == urlsplit(SITE_URL).hostname)
+    check("robots.txt links the canonical sitemap", "Sitemap: " + SITE_URL + "sitemap.xml" in read("robots.txt"))
 
 
 def check_og_image() -> None:

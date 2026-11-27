@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Yash Kaushik</title>
-  <meta name="description" content="About Yash Kaushik — a Developer Experience Engineer with 7+ years of experience across game development, infrastructure automation, CI/CD reliability, AI platform work, and production support at EA and Ubisoft.">
+  <title>About | Yash Kaushik</title>
+  <meta name="description" content="Meet Yash Kaushik, a DevOps and Developer Experience Engineer focused on AI enablement, infrastructure automation, developer productivity, and technical support.">
   <link rel="canonical" href="https://yashkaushik.dev/about.html">
   <meta name="author" content="Yash Kaushik">
   <meta name="theme-color" content="#faf8f3">
@@ -13,12 +13,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Yash Kaushik">
   <meta property="og:url" content="https://yashkaushik.dev/about.html">
-  <meta property="og:title" content="About — Yash Kaushik">
-  <meta property="og:description" content="Developer Experience Engineer with 7+ years across game development, infrastructure automation, CI/CD reliability, AI platform work, and production support at EA and Ubisoft.">
+  <meta property="og:title" content="About | Yash Kaushik">
+  <meta property="og:description" content="Meet Yash Kaushik, a DevOps and Developer Experience Engineer focused on AI enablement, infrastructure automation, developer productivity, and technical support.">
   <meta property="og:image" content="https://yashkaushik.dev/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Yash Kaushik — Developer Experience Engineer">
+  <meta property="og:image:alt" content="Yash Kaushik, DevOps &amp; Developer Experience Engineer">
   <meta property="og:locale" content="en_CA">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -36,6 +36,9 @@
   <nav>
     <a href="./" class="nav-logo">YK<span>.</span></a>
     <div class="nav-right">
+      <button class="nav-hamburger" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation" onclick="(function(btn){const nav=document.getElementById('primary-nav'); nav.classList.toggle('show'); const expanded=nav.classList.contains('show'); btn.setAttribute('aria-expanded', expanded);})(this)">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
       <ul id="primary-nav" class="nav-links">
         <li><a href="./">Home</a></li>
         <li><a href="about.html" class="active" aria-current="page">About</a></li>
@@ -46,38 +49,27 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <a href="contact.html" class="nav-cta">Get in touch</a>
-      <button class="nav-hamburger" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation" onclick="(function(btn){const nav=document.getElementById('primary-nav'); nav.classList.toggle('show'); const expanded=nav.classList.contains('show'); btn.setAttribute('aria-expanded', expanded);})(this)">
-        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
     </div>
   </nav>
 
   <main id="main-content" tabindex="-1" class="page-wrap">
-    <p class="section-label">01 — About</p>
-    <h1 class="page-heading">Reliable systems, friction-free tooling.</h1>
+    <p class="section-label">About</p>
+    <h1 class="page-heading">About me</h1>
 
     <div class="about-text">
-      <p>
-        I'm a Developer Experience Engineer with <strong>7+ years of experience</strong> across game development, infrastructure automation, CI/CD reliability, build engineering, and production support. My biggest win to date: a migration of <strong>56,000+ version control workspaces</strong> — one checked-out view of the project per developer, artist and build machine — was bottlenecked on an audit script that took hours to list what still had to move. I refactored it down to <strong>seconds</strong>, so the migration team could get a fresh list on demand instead of waiting a day for a stale one.
-      </p>
-      <p>
-        Currently at <strong>Maxis (EA)</strong>, I support CI/CD reliability, VM provisioning, and infrastructure automation for large-scale game development, own high-severity incidents end-to-end, and help keep delivery secure with HCP Vault, DPAPI, and credential-remediation workflows across IT, security, cloud, and partner teams.
-      </p>
-      <p>
-        I also build the team's <strong>AI platform work</strong> — a grounded internal support assistant with a strict source order and a citation on every answer, prompt-injection guards, token and cost telemetry, a daily spend cap with an automatic kill switch, and a staged rollout with a gate between each stage. The design rule I care most about: if a question is outside what the system can verify, it <strong>escalates to a human instead of guessing</strong>. A confident wrong answer in a support channel is worse than no answer.
-      </p>
-      <p>
-        Before EA, I spent close to four years at <strong>Ubisoft Toronto</strong> as a Release & Build Specialist, and before that as a Tools Support Specialist — building and supporting the build/deployment systems behind shipped titles like Far Cry 6 and XDefiant.
-      </p>
-      <p>
-        I also teach part-time at <strong>St. Lawrence College</strong>, covering Python, C++, C#, and AI-assisted development practices. I care about systems that are reliable, tooling that doesn't get in people's way, and making complex things understandable.
-      </p>
+      <p>I'm a DevOps and Developer Experience Engineer with <strong>8+ years of experience</strong> across software engineering, technical operations, infrastructure automation, build and release engineering, and technical support.</p>
+      <p>At Electronic Arts (Maxis), Ubisoft, and SSI Schaefer, I helped teams improve how they build, deliver, and support software. My work has focused on developer productivity, CI/CD reliability, platform engineering, and infrastructure automation. At Maxis, I refactored a Python audit that went from taking hours to taking seconds, giving migration teams up-to-date information on demand.</p>
+      <p>I enjoy figuring out how systems work and why they break. I like troubleshooting infrastructure, automating repetitive steps, and connecting tools when doing so makes someone's job easier.</p>
+      <p>As a Claude Certified Developer, I've built and tested AI-assisted self-service support. I also explore LLM integrations, AI agents, Model Context Protocol (MCP), local AI infrastructure, and workflow automation in my own projects. I'm interested in where AI can improve productivity while preserving reliability, security, and human oversight.</p>
+      <p>As a former part-time professor at St. Lawrence College, I delivered 100+ hours of technical instruction. Teaching shaped how I explain technical decisions, mentor others, and work through problems with a team.</p>
+      <p>I value curiosity, accountability, simplicity, and continuous learning. I take time to understand the problem, choose tools that fit, and build systems people can depend on. I'm interested in work that brings engineering, AI, automation, and technical support together to solve practical problems.</p>
+      <p>Outside work, I build home labs, automate things around the house, explore new technology, watch anime, and collect gadgets. I'm based in Barrie, Ontario, Canada.</p>
     </div>
 
     <div class="certifications">
-      <h2 class="section-heading">Certifications</h2>
-      <p>Recently earned: <strong>Claude Certified Developer — Foundations</strong> (Anthropic).</p>
-      <p><a href="certifications.html" class="btn btn-ghost">See all certifications</a></p>
+      <h2 class="section-heading">Certification</h2>
+      <p><strong>Claude Certified Developer - Foundations</strong> (Anthropic).</p>
+      <p><a href="certifications.html" class="btn btn-ghost">View credentials and education</a></p>
     </div>
 
     <div class="page-cta">

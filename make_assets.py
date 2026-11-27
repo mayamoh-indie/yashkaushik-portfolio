@@ -41,12 +41,18 @@ SERIF_ITALIC = "georgiai.ttf"
 SANS = "calibri.ttf"
 SANS_BOLD = "calibrib.ttf"
 
+if sys.platform.startswith("linux"):
+    FONT_DIR = "/usr/share/fonts/truetype/liberation"
+    SERIF_ITALIC = "LiberationSerif-Italic.ttf"
+    SANS = "LiberationSans-Regular.ttf"
+    SANS_BOLD = "LiberationSans-Bold.ttf"
+
 OG_SIZE: Tuple[int, int] = (1200, 630)
 MARGIN = 88
 
 NAME = "Yash Kaushik"
-ROLE = "Developer Experience Engineer"
-TAGLINE = "DevOps  \u00b7  SRE  \u00b7  Automation  \u00b7  AI Platform  \u00b7  Build Engineering"
+ROLE = "DevOps & Developer Experience Engineer"
+TAGLINE = "AI Enablement  \u00b7  Platform Engineering  \u00b7  Technical Support"
 DOMAIN = "yashkaushik.dev"
 
 ICON_SIZES: Sequence[int] = (16, 32, 48)
@@ -54,7 +60,7 @@ ICON_SIZES: Sequence[int] = (16, 32, 48)
 
 def load_font(filename: str, size: int) -> ImageFont.FreeTypeFont:
     """
-    Load a TrueType font from the Windows font directory.
+    Load a TrueType font from the configured font directory.
 
     Fails loudly rather than silently substituting a bitmap default, because a
     fallback font would silently wreck the card layout.
@@ -137,7 +143,7 @@ def build_og_card() -> Image.Image:
 
     logo_font = load_font(SERIF_ITALIC, 40)
     name_font = load_font(SERIF_ITALIC, 104)
-    role_font = load_font(SANS_BOLD, 44)
+    role_font = load_font(SANS_BOLD, 42)
     tag_font = load_font(SANS, 27)
     domain_font = load_font(SANS, 27)
 

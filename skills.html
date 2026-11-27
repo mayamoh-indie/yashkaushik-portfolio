@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skills — Yash Kaushik</title>
-  <meta name="description" content="Yash Kaushik's technical skills — Kubernetes, Docker, Terraform, Jenkins, Perforce, CI/CD pipelines, observability, secrets management, and LLM platform engineering including retrieval grounding, prompt-injection defence and cost control.">
+  <title>Skills | Yash Kaushik</title>
+  <meta name="description" content="Skills in developer experience, technical support, AI enablement, platform engineering, infrastructure, CI/CD, incident management, and mentorship.">
   <link rel="canonical" href="https://yashkaushik.dev/skills.html">
   <meta name="author" content="Yash Kaushik">
   <meta name="theme-color" content="#faf8f3">
@@ -13,12 +13,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Yash Kaushik">
   <meta property="og:url" content="https://yashkaushik.dev/skills.html">
-  <meta property="og:title" content="Skills — Yash Kaushik">
-  <meta property="og:description" content="Infrastructure, CI/CD, observability, security and LLM platform engineering — retrieval grounding, prompt-injection defence, cost control and staged rollout.">
+  <meta property="og:title" content="Skills | Yash Kaushik">
+  <meta property="og:description" content="Skills in developer experience, technical support, AI enablement, platform engineering, infrastructure, CI/CD, incident management, and mentorship.">
   <meta property="og:image" content="https://yashkaushik.dev/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Yash Kaushik — Developer Experience Engineer">
+  <meta property="og:image:alt" content="Yash Kaushik, DevOps &amp; Developer Experience Engineer">
   <meta property="og:locale" content="en_CA">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -36,6 +36,9 @@
   <nav>
     <a href="./" class="nav-logo">YK<span>.</span></a>
     <div class="nav-right">
+      <button class="nav-hamburger" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation" onclick="(function(btn){const nav=document.getElementById('primary-nav'); nav.classList.toggle('show'); const expanded=nav.classList.contains('show'); btn.setAttribute('aria-expanded', expanded);})(this)">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
       <ul id="primary-nav" class="nav-links">
         <li><a href="./">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -46,37 +49,71 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <a href="contact.html" class="nav-cta">Get in touch</a>
-      <button class="nav-hamburger" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation" onclick="(function(btn){const nav=document.getElementById('primary-nav'); nav.classList.toggle('show'); const expanded=nav.classList.contains('show'); btn.setAttribute('aria-expanded', expanded);})(this)">
-        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
     </div>
   </nav>
 
   <main id="main-content" tabindex="-1" class="page-wrap">
-    <p class="section-label">04 — Skills</p>
-    <h1 class="page-heading">Tools of the trade.</h1>
-    <p class="skills-intro">A snapshot of what I reach for. Always learning, always pruning. See <a href="projects.html">Projects</a> for how these were actually used.</p>
+    <p class="section-label">Skills</p>
+    <h1 class="page-heading">Technical skills</h1>
+    <p class="skills-intro">Capabilities I use to build, deliver, and support software. See the <a href="projects.html">case studies</a> for examples.</p>
 
     <div class="skills-grid">
       <div class="skill-group">
-        <div class="skill-group-title">Infrastructure &amp; Cloud</div>
+        <h2 class="skill-group-title">Developer Experience &amp; Technical Support</h2>
+        <div class="tags">
+          <span class="tag">Developer productivity tooling</span>
+          <span class="tag">Technical escalation</span>
+          <span class="tag">Requirements analysis</span>
+          <span class="tag">Onboarding automation</span>
+          <span class="tag">Self-service support</span>
+          <span class="tag">Windows and Linux troubleshooting</span>
+          <span class="tag">Slack Web API</span>
+          <span class="tag">Slack Workflow Builder</span>
+          <span class="tag">Jira REST API</span>
+          <span class="tag">Confluence REST API</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h2 class="skill-group-title">AI Enablement &amp; LLM Integrations</h2>
+        <div class="tags">
+          <span class="tag">AWS Bedrock</span>
+          <span class="tag">Claude</span>
+          <span class="tag">Claude Code</span>
+          <span class="tag">Model Context Protocol (MCP)</span>
+          <span class="tag">Retrieval-augmented generation (RAG)</span>
+          <span class="tag">Source citation</span>
+          <span class="tag">Prompt engineering</span>
+          <span class="tag">Prompt-injection defence</span>
+          <span class="tag">Output allowlisting</span>
+          <span class="tag">Model routing</span>
+          <span class="tag">Token and cost telemetry</span>
+          <span class="tag">Spend caps</span>
+          <span class="tag">Answer caching</span>
+          <span class="tag">Offline evaluation</span>
+          <span class="tag">Shadow-mode evaluation</span>
+          <span class="tag">n8n</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h2 class="skill-group-title">Infrastructure &amp; Cloud</h2>
         <div class="tags">
           <span class="tag">Kubernetes</span>
           <span class="tag">Docker</span>
           <span class="tag">Docker Compose</span>
           <span class="tag">Terraform</span>
           <span class="tag">Ansible</span>
-          <span class="tag">VM Provisioning</span>
+          <span class="tag">VM provisioning</span>
           <span class="tag">VMware</span>
           <span class="tag">Windows Server</span>
-          <span class="tag">Linux Administration</span>
+          <span class="tag">Linux administration</span>
           <span class="tag">WSL</span>
           <span class="tag">Google Cloud (IAM, Secret Manager)</span>
-          <span class="tag">Enterprise Networking</span>
+          <span class="tag">Enterprise networking</span>
+          <span class="tag">Idempotent provisioning</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">CI/CD &amp; Version Control</div>
+        <h2 class="skill-group-title">CI/CD &amp; Release Engineering</h2>
         <div class="tags">
           <span class="tag">Jenkins</span>
           <span class="tag">Jenkins Configuration as Code (JCasC)</span>
@@ -85,51 +122,20 @@
           <span class="tag">P4Python</span>
           <span class="tag">Git</span>
           <span class="tag">GitHub</span>
-          <span class="tag">YAML Pipelines</span>
-          <span class="tag">Automated Build Pipelines</span>
-          <span class="tag">Pre-Submission Validation</span>
-          <span class="tag">Idempotent Provisioning</span>
+          <span class="tag">YAML pipelines</span>
+          <span class="tag">Automated build pipelines</span>
+          <span class="tag">Pre-submission validation</span>
+          <span class="tag">Distributed integration testing</span>
+          <span class="tag">JFrog Artifactory</span>
+          <span class="tag">NuGet</span>
+          <span class="tag">Conan</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">AI &amp; LLM Platform Engineering</div>
-        <div class="tags">
-          <span class="tag">Retrieval grounding (RAG)</span>
-          <span class="tag">Source precedence &amp; citation</span>
-          <span class="tag">Prompt engineering</span>
-          <span class="tag">Prompt-injection defence</span>
-          <span class="tag">Output allowlisting</span>
-          <span class="tag">Model routing (cheap → strong)</span>
-          <span class="tag">Token &amp; cost telemetry</span>
-          <span class="tag">Spend caps &amp; kill switches</span>
-          <span class="tag">Answer caching &amp; invalidation</span>
-          <span class="tag">Offline evaluation &amp; fixture replay</span>
-          <span class="tag">Staged rollout &amp; shadow mode</span>
-          <span class="tag">AWS Bedrock</span>
-          <span class="tag">Claude</span>
-          <span class="tag">OpenAI-compatible SDKs</span>
-          <span class="tag">MCP</span>
-          <span class="tag">Claude Code</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Observability &amp; Operations</div>
-        <div class="tags">
-          <span class="tag">Datadog</span>
-          <span class="tag">Logging</span>
-          <span class="tag">Monitoring</span>
-          <span class="tag">Incident Management</span>
-          <span class="tag">Post-Mortems</span>
-          <span class="tag">Root-Cause Analysis</span>
-          <span class="tag">Access Management</span>
-          <span class="tag">Troubleshooting</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Scripting &amp; Languages</div>
+        <h2 class="skill-group-title">Scripting &amp; Software Development</h2>
         <div class="tags">
           <span class="tag">Python</span>
-          <span class="tag">Type-annotated Python</span>
+          <span class="tag">Python type annotations</span>
           <span class="tag">pytest</span>
           <span class="tag">uv</span>
           <span class="tag">Bash</span>
@@ -139,47 +145,51 @@
           <span class="tag">SQL</span>
           <span class="tag">YAML</span>
           <span class="tag">XML</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Services &amp; Data</div>
-        <div class="tags">
           <span class="tag">Django</span>
           <span class="tag">REST API integration</span>
           <span class="tag">PostgreSQL</span>
           <span class="tag">SQLite</span>
-          <span class="tag">Slack Web API</span>
-          <span class="tag">Slack Workflow Builder</span>
-          <span class="tag">Jira REST API</span>
-          <span class="tag">Confluence REST API</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">Security &amp; DevSecOps</div>
+        <h2 class="skill-group-title">Observability &amp; Incident Management</h2>
         <div class="tags">
-          <span class="tag">Secrets Management</span>
-          <span class="tag">HCP Vault / Enterprise Secrets Services</span>
-          <span class="tag">GCP Secret Manager</span>
+          <span class="tag">Datadog</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">Logging</span>
+          <span class="tag">Monitoring</span>
+          <span class="tag">Incident management</span>
+          <span class="tag">Incident postmortems</span>
+          <span class="tag">Root-cause analysis</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h2 class="skill-group-title">Security &amp; DevSecOps</h2>
+        <div class="tags">
+          <span class="tag">HCP Vault</span>
+          <span class="tag">Enterprise secrets management</span>
+          <span class="tag">Google Cloud Secret Manager</span>
           <span class="tag">DPAPI</span>
-          <span class="tag">Credential Scanning &amp; Remediation</span>
-          <span class="tag">Least-Privilege Scoping</span>
-          <span class="tag">Access Controls</span>
-          <span class="tag">Secure Delivery Practices</span>
+          <span class="tag">Credential scanning and remediation</span>
+          <span class="tag">Least privilege</span>
+          <span class="tag">Access controls</span>
+          <span class="tag">Secure delivery practices</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">Developer Experience &amp; Docs</div>
+        <h2 class="skill-group-title">Technical Documentation &amp; Mentorship</h2>
         <div class="tags">
-          <span class="tag">Developer Productivity Tooling</span>
-          <span class="tag">Docs as Code</span>
+          <span class="tag">Docs as code</span>
           <span class="tag">Runbooks</span>
-          <span class="tag">Technical Writing</span>
-          <span class="tag">Support Deflection Design</span>
-          <span class="tag">Onboarding Automation</span>
-          <span class="tag">Teaching &amp; Mentoring</span>
+          <span class="tag">Technical writing</span>
+          <span class="tag">Teaching and mentoring</span>
+          <span class="tag">Customer training</span>
         </div>
       </div>
     </div>
+
+    <h2 class="section-heading">Personal AI labs</h2>
+    <p class="page-subheading">I use personal labs to experiment with the OpenAI API, OpenAI-compatible SDKs, AI agents, local AI environments, and workflow automation.</p>
 
     <div class="page-cta">
       <a href="projects.html" class="btn btn-primary">See these in use</a>
