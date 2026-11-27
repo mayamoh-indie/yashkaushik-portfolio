@@ -1,51 +1,36 @@
 # Yash Kaushik portfolio
 
-Static HTML and CSS portfolio for yashkaushik.dev. No build step.
-Updated from `D:/Lab/Git/port` on 2026-09-19. The repository's `CNAME`
-and Git configuration were preserved; the old ZIP snapshot was excluded.
+The portfolio at [yashkaushik.dev](https://yashkaushik.dev/) is a seven-page static HTML and CSS site hosted on GitHub Pages. There is no build step.
 
-## Preview and verify
+## Preview and verify locally
 
-Requires Python 3.13 for the development tools; the website requires no Python.
+Run these commands from the repository root with Python 3.
 
-```powershell
+```sh
 python -m http.server 8899 --bind 127.0.0.1
-# Open http://127.0.0.1:8899/
 ```
 
-```powershell
+Open `http://127.0.0.1:8899/`. In a second terminal, run:
+
+```sh
 python verify.py
 python -m compileall .
 ```
 
-Verification checks page structure, local file links, navigation, metadata,
-sitemap coverage, CSS class coverage and the social image dimensions.
-It does not validate external links, browser layout or full accessibility.
+The verifier checks page structure, navigation, local links, canonical URLs, Open Graph metadata, homepage JSON-LD, sitemap coverage, CSS classes, and social image dimensions. It also checks for superseded figures and present-tense employment claims. Preview the site at mobile and desktop widths, and use the keyboard to check the skip link and navigation.
 
-`make_assets.py` optionally regenerates the raster assets. It requires Pillow
-and the Windows Georgia/Calibri fonts. Existing assets are ready to use.
+## GitHub Pages workflow
 
-## Publishing
+Start changes from `main` on a feature branch. Open a pull request against `main` and include the verification results and any factual questions for review. Merge only after the owner approves publication. GitHub Pages publishes from the root of `main` and serves the site on the custom domain. Keep `CNAME`, canonical URLs, `robots.txt`, and `sitemap.xml` aligned with that domain. The site uses `.html` links for compatibility with GitHub Pages and the local server. `_redirects` is a legacy Netlify file.
 
-Publish the seven HTML pages, style.css, favicon.svg, favicon.ico,
-apple-touch-icon.png, og.png, robots.txt, sitemap.xml and CNAME.
-Include `_redirects` for Netlify. Keep development scripts and archives out
-of the public upload. Hosting configuration is unchanged by this merge.
-Local previews use `.html` URLs; the supplied clean-URL rewrites are specific
-to Netlify. Nothing has been deployed by this merge.
+The checked-in raster assets are ready to serve. To regenerate just the social image, install Pillow and run:
 
-## Review follow-ups
+```sh
+python -c "from make_assets import build_og_card; build_og_card().save('og.png', 'PNG', optimize=True)"
+```
 
-- Add a public code sample when available. Contact contains an inactive GitHub
-  placeholder; enable it only when its target exists.
-- Focus the contact-page role list around your primary Developer Experience
-  positioning; it currently ranges from SRE to Engineering Program Manager.
-- Visually test all pages at mobile and desktop widths, including keyboard
-  operation of the mobile menu, before publishing.
+The asset generator uses Georgia and Calibri on Windows and Liberation Serif and Sans on Linux. The full `python make_assets.py` command also regenerates the raster favicons.
 
-The merge adds skip links, current-page navigation semantics, larger mobile
-menu targets and semantic project headings without changing career claims.
+## Add a public project
 
-The portfolio serves as the resume; no downloadable resume is planned.
-Project summaries lead with outcomes and separate validation evidence from
-user impact, with prototype and rollout limitations stated explicitly.
+Add a separate public-project section to `projects.html` when there is a completed write-up. Reuse the existing case-study layout with a stable anchor, a result, the problem, the contribution and technical approach, the validation or deployment status, and the technology stack. Include verified public links when available. Review claims and disclosure before publishing.

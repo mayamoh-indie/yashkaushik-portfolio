@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects — Yash Kaushik</title>
-  <meta name="description" content="Selected work by Yash Kaushik — unblocking a 56,000-workspace version control migration by cutting an audit script from hours to seconds, an end-to-end self-serve support platform with retrieval grounding and cost controls, a build-vs-buy decision settled by measurement, a self-hosted CI platform proof of concept, and documentation shipped as a reviewed pipeline.">
+  <title>Projects | Yash Kaushik</title>
+  <meta name="description" content="Case studies in infrastructure automation, AI-assisted support, platform cost analysis, CI/CD, workstation provisioning, and documentation as code.">
   <link rel="canonical" href="https://yashkaushik.dev/projects.html">
   <meta name="author" content="Yash Kaushik">
   <meta name="theme-color" content="#faf8f3">
@@ -13,12 +13,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Yash Kaushik">
   <meta property="og:url" content="https://yashkaushik.dev/projects.html">
-  <meta property="og:title" content="Projects — Yash Kaushik">
-  <meta property="og:description" content="Unblocking a 56,000-workspace version control migration, an end-to-end self-serve support platform with retrieval grounding and cost controls, a build-vs-buy decision settled by measurement, a self-hosted CI platform proof of concept, and documentation shipped as a reviewed pipeline.">
+  <meta property="og:title" content="Projects | Yash Kaushik">
+  <meta property="og:description" content="Case studies in infrastructure automation, AI-assisted support, platform cost analysis, CI/CD, workstation provisioning, and documentation as code.">
   <meta property="og:image" content="https://yashkaushik.dev/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Yash Kaushik — Developer Experience Engineer">
+  <meta property="og:image:alt" content="Yash Kaushik, DevOps &amp; Developer Experience Engineer">
   <meta property="og:locale" content="en_CA">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -36,6 +36,9 @@
   <nav>
     <a href="./" class="nav-logo">YK<span>.</span></a>
     <div class="nav-right">
+      <button class="nav-hamburger" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation" onclick="(function(btn){const nav=document.getElementById('primary-nav'); nav.classList.toggle('show'); const expanded=nav.classList.contains('show'); btn.setAttribute('aria-expanded', expanded);})(this)">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
       <ul id="primary-nav" class="nav-links">
         <li><a href="./">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -46,96 +49,73 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <a href="contact.html" class="nav-cta">Get in touch</a>
-      <button class="nav-hamburger" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation" onclick="(function(btn){const nav=document.getElementById('primary-nav'); nav.classList.toggle('show'); const expanded=nav.classList.contains('show'); btn.setAttribute('aria-expanded', expanded);})(this)">
-        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
     </div>
   </nav>
 
   <main id="main-content" tabindex="-1" class="page-wrap">
-    <p class="section-label">03 — Projects</p>
-    <h1 class="page-heading">Things I built, and why.</h1>
-    <p class="page-subheading">Platform and developer-experience work: tooling that removes friction, automation that is safe to re-run, and AI systems with a gate in front of every risky step.</p>
+    <p class="section-label">Projects</p>
+    <h1 class="page-heading">Selected engineering projects</h1>
+    <p class="page-subheading">Case studies from my time at Electronic Arts (Maxis) in infrastructure automation, developer support, CI/CD, and technical documentation.</p>
 
-    <p class="page-note">This work is internal to the studios I have worked at, so I describe the <strong>outcome, the problem and the design decisions</strong> rather than proprietary detail. Happy to go deeper in conversation.</p>
-
-    <div class="timeline">
-
-      <!-- ─────────────────────────────────────────────── -->
-      <div class="job">
+    <section class="timeline" aria-label="Professional case studies">
+      <article class="job" id="version-control-audit">
         <div class="job-top">
-          <h2 class="job-title">Unblocking a 56,000-Workspace Version Control Migration</h2>
+          <h2 class="job-title">Version control audit optimization</h2>
           <div class="job-date">EA</div>
         </div>
-        <div class="job-company">Python · version control · AI-assisted refactor · migration support</div>
-        <p class="project-outcome"><strong>Outcome:</strong> Cut audit time for <strong>56,000+ workspaces from hours to seconds</strong>, giving migration teams a fresh list during the same conversation. The tool became a routine workspace hygiene check.</p>
-        <p class="project-problem">Migration hand-offs depended on a slow, quickly outdated list of workspaces: the source-control checkouts used by developers, artists and build machines.</p>
-        <ul class="job-bullets">
-          <li><strong>Removed repeated work:</strong> moved expensive operations out of the per-workspace path so they run once per audit.</li>
-          <li><strong>Kept the batch useful:</strong> isolated individual record failures so one bad workspace cannot abort the run.</li>
-          <li><strong>Verified the speed-up:</strong> inspected the AI-assisted refactor, ran it against the real workspace estate and measured the runtime.</li>
-        </ul>
+        <p class="project-outcome">Cut a version control audit from <strong>hours to seconds</strong>, giving migration teams an updated list on demand.</p>
+        <p class="project-problem">Migration handoffs relied on a report that could take hours to generate. The outstanding workspaces could change before the report arrived.</p>
+        <p class="project-problem">I refactored the Python script to run expensive operations once per audit and isolate individual record failures. I reviewed the AI-assisted changes and measured the runtime on migration data.</p>
+        <p class="project-problem"><strong>Status.</strong> The result measures the audit runtime during the migration.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">
             <span class="tag">Python</span>
             <span class="tag">Version control tooling</span>
-            <span class="tag">AI-assisted refactoring</span>
             <span class="tag">Profiling</span>
             <span class="tag">Windows Server</span>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- ─────────────────────────────────────────────── -->
-      <div class="job">
+      <article class="job" id="ai-assisted-support">
         <div class="job-top">
-          <h2 class="job-title">A Self-Serve Support Platform, End to End</h2>
+          <h2 class="job-title">AI-assisted internal support platform</h2>
           <div class="job-date">EA</div>
         </div>
-        <div class="job-company">Slack intake · retrieval grounding · injection defence · cost control · deflection metrics · low-code port</div>
-        <p class="project-outcome"><strong>Outcome:</strong> Expanded one tool's answer coverage from <strong>10 to 31 entries</strong> and made support outcomes measurable. Intake records whether documentation resolved a request, alongside priority and tool ownership; the low-code assistant is running in <strong>shadow mode without posting</strong>.</p>
-        <p class="project-problem">Repeated questions interrupted engineers, while free-form requests made prioritisation and documentation effectiveness hard to track. I connected intake, curated answers and a grounded assistant.</p>
-        <ul class="job-bullets">
-          <li><strong>Documentation before escalation:</strong> offer relevant answers before creating a ticket, record both resolutions and escalations, and route highest-severity requests for human review.</li>
-          <li><strong>Answers drawn from actual support:</strong> grew the shared corpus from 46 to 76 entries using nine channels. Retrieval checks returned the right document first for <strong>16 of 16 real phrasings</strong>.</li>
-          <li><strong>Control cost and uncertainty:</strong> deterministic answers and cached replies avoid model calls; source citations, tool-identity checks, spend caps and a kill switch constrain the assistant. Unknown tools escalate to a human.</li>
-          <li><strong>Validation and rollout:</strong> 323 automated tests and offline replay support staged rollout. A smaller low-code version lets colleagues edit the workflow; shadow runs inform its confidence threshold.</li>
-        </ul>
+        <p class="project-outcome">Improved <strong>documented answer coverage by 210% for one internal tool</strong>. The intake workflow also recorded whether documentation resolved a request or it needed escalation.</p>
+        <p class="project-problem">Engineers fielded repeated support questions, and free-form requests made it hard to prioritize issues or tell whether documentation helped.</p>
+        <p class="project-problem">I built a Slack intake that offered documentation before ticket creation and routed urgent requests for human review. I built and tested a Claude assistant that cited internal sources, used rules and cached answers for common requests, and escalated uncertain answers. I added input safeguards, usage monitoring, and spend controls, and used offline replay to check retrieval and responses.</p>
+        <p class="project-problem"><strong>Status.</strong> The low-code version was evaluated in <strong>shadow mode without posting replies</strong>. The work supported a staged rollout. The coverage result measures documentation for the single tool.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">
-            <span class="tag">Python 3.12</span>
+            <span class="tag">Python</span>
             <span class="tag">uv</span>
             <span class="tag">SQLite</span>
-            <span class="tag">AWS Bedrock (Claude)</span>
+            <span class="tag">AWS Bedrock</span>
+            <span class="tag">Claude</span>
             <span class="tag">Slack Web API</span>
             <span class="tag">Slack Workflow Builder</span>
-            <span class="tag">Slack Socket Mode</span>
             <span class="tag">n8n</span>
-            <span class="tag">Jira REST</span>
-            <span class="tag">Confluence REST</span>
+            <span class="tag">Jira REST API</span>
+            <span class="tag">Confluence REST API</span>
             <span class="tag">YAML</span>
             <span class="tag">pytest</span>
             <span class="tag">Docker</span>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- ─────────────────────────────────────────────── -->
-      <div class="job">
+      <article class="job" id="automation-platform-cost">
         <div class="job-top">
-          <h2 class="job-title">Measure Before You Buy<span class="job-note">Build-vs-buy</span></h2>
+          <h2 class="job-title">Automation platform cost analysis</h2>
           <div class="job-date">EA</div>
         </div>
-        <div class="job-company">Cost modelling · demand measurement · platform research</div>
-        <p class="project-outcome"><strong>Outcome:</strong> Withdrew a separate platform purchase request after <strong>less than a day of measurement</strong> and used existing infrastructure. At measured demand, owning two environments would cost roughly <strong>50 times more per question</strong> than shared tenancy.</p>
-        <p class="project-problem">The proposed automation platform charged both monthly rent and per execution. I checked actual support demand before committing to a separate instance.</p>
-        <ul class="job-bullets">
-          <li><strong>Costed real usage:</strong> channel history showed roughly a dozen genuine questions a month in the busiest channel; fixed fees represented about 98% of the projected bill.</li>
-          <li><strong>Targeted the largest cost:</strong> compared polling with event-driven triggers that avoid idle runs. Model usage cost around eight times less than the platform's per-run fee.</li>
-          <li><strong>Reused available capacity:</strong> checked the existing platform's dashboards and tenancy options, then iterated locally in containers pinned to its version.</li>
-        </ul>
+        <p class="project-outcome">Identified an alternative with <strong>approximately 98% lower projected cost per request</strong>. The separate purchase request was withdrawn.</p>
+        <p class="project-problem">The proposed platform charged a recurring fee and a fee per execution. The team needed to know whether support demand justified a standalone instance.</p>
+        <p class="project-problem">I estimated request volume from support activity, modelled fixed fees, execution charges, and model costs, and compared a standalone instance with shared capacity. I also compared polling with event-driven triggers to account for idle executions.</p>
+        <p class="project-problem"><strong>Status.</strong> The percentage is a cost projection at observed demand. Actual savings were unmeasured.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">
@@ -147,88 +127,73 @@
             <span class="tag">Cost modelling</span>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- ─────────────────────────────────────────────── -->
-      <div class="job">
+      <article class="job" id="self-hosted-jenkins">
         <div class="job-top">
-          <h2 class="job-title">Self-Hosted CI Platform<span class="job-note">Proof of concept</span></h2>
+          <h2 class="job-title">Self-hosted Jenkins CI proof of concept</h2>
           <div class="job-date">EA</div>
         </div>
-        <div class="job-company">Jenkins · Configuration as Code · secrets from day one · deliberate scope</div>
-        <p class="project-outcome"><strong>Outcome:</strong> Built a <strong>reproducible CI proof of concept without requesting new infrastructure</strong>, giving the team a working system to evaluate. Production rollout remains subject to approval.</p>
-        <p class="project-problem">The team needed an alternative to an ageing shared CI system, with maintenance cost as the main objection. I scoped the proposal to the team's own products.</p>
-        <ul class="job-bullets">
-          <li><strong>Rebuild from an empty state:</strong> declare jobs and configuration as code, with enterprise-managed secrets and separate staging and production paths.</li>
-          <li><strong>Fit the workload:</strong> account for Windows agents that require domain identity, and assign source-dependent jobs to CI while keeping editable chat workflows on the workflow platform.</li>
-          <li><strong>Validation:</strong> all 16 checks pass from a wiped state, making the prototype repeatable for reviewers. These checks establish readiness for evaluation, not production deployment.</li>
-        </ul>
+        <p class="project-outcome">Built and validated a <strong>reproducible CI environment</strong> using existing infrastructure.</p>
+        <p class="project-problem">The team needed an alternative to an ageing shared CI system and wanted to understand the maintenance cost.</p>
+        <p class="project-problem">I defined the Jenkins controller and jobs as code, used enterprise-managed secrets, and tested a clean rebuild. I accounted for Windows agents and scoped the proof of concept to the team’s own workloads.</p>
+        <p class="project-problem"><strong>Status.</strong> The team had a working proof of concept to evaluate. Production rollout remained subject to approval.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">
             <span class="tag">Jenkins</span>
-            <span class="tag">Configuration as Code (JCasC)</span>
+            <span class="tag">Jenkins Configuration as Code (JCasC)</span>
             <span class="tag">Docker</span>
             <span class="tag">WSL Ubuntu</span>
             <span class="tag">Bash</span>
             <span class="tag">Secrets management</span>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- ─────────────────────────────────────────────── -->
-      <div class="job">
+      <article class="job" id="workstation-provisioning">
         <div class="job-top">
-          <h2 class="job-title">Shared Integration Workstation Fleet</h2>
+          <h2 class="job-title">Shared integration workstation provisioning</h2>
           <div class="job-date">EA</div>
         </div>
-        <div class="job-company">Idempotent provisioning · evidence-led design · shared-machine security · remote administration</div>
-        <p class="project-outcome"><strong>Outcome:</strong> Provisioned the first shared machine with <strong>19 workspaces verified clean</strong> and a shared toolset checked in place. Repeatable setup replaces machine-specific manual configuration; one interactive first-run step and the second machine remain.</p>
-        <p class="project-problem">A legacy integration script ran on individually configured machines, making inconsistent results difficult to reproduce.</p>
-        <ul class="job-bullets">
-          <li><strong>Use the real conventions:</strong> inspected 43 existing workspaces before writing idempotent provisioning. Re-running leaves matching configuration unchanged; syncing stays with the integration script.</li>
-          <li><strong>Give users consistent tools:</strong> install the shared kit for all users, skip missing shortcut targets, and verify installed file counts and versions by script.</li>
-          <li><strong>Respect security boundaries:</strong> use managed secrets and dry-run installation, route transfers through an authorised workstation, and leave the tray application's first launch to a person.</li>
-        </ul>
+        <p class="project-outcome">Provisioned and verified the <strong>first shared workstation</strong> with a repeatable configuration and a shared toolset.</p>
+        <p class="project-problem">A legacy integration script ran on individually configured machines. Differences between those environments made failures hard to reproduce.</p>
+        <p class="project-problem">I used existing workspace conventions to build idempotent provisioning. I added a dry-run mode, managed secrets, and scripted checks for installed tools and versions.</p>
+        <p class="project-problem"><strong>Status.</strong> Validation covered the first machine. A second machine and one interactive first-run step remained outstanding.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">
             <span class="tag">Python</span>
-            <span class="tag">Perforce / P4Python</span>
+            <span class="tag">Perforce</span>
+            <span class="tag">P4Python</span>
             <span class="tag">Windows Server</span>
             <span class="tag">PowerShell</span>
-            <span class="tag">GCP Secret Manager</span>
+            <span class="tag">Managed secrets</span>
             <span class="tag">IAM</span>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- ─────────────────────────────────────────────── -->
-      <div class="job">
+      <article class="job" id="documentation-pipeline">
         <div class="job-top">
-          <h2 class="job-title">Documentation as a Reviewed Pipeline</h2>
+          <h2 class="job-title">Documentation as a reviewed pipeline</h2>
           <div class="job-date">EA</div>
         </div>
-        <div class="job-company">Docs as code · publish guards · technical writing</div>
-        <p class="project-outcome"><strong>Outcome:</strong> Published a reviewed runbook with <strong>separate paths for users and administrators</strong>. Publish guards now block malformed documents and missing or unexpected figure references before they reach readers.</p>
-        <p class="project-problem">Manual wiki edits let a critical administration runbook drift and sent mistakes straight to readers. I moved authoring and publishing into a reviewable pipeline.</p>
-        <ul class="job-bullets">
-          <li><strong>Review changes like code:</strong> generate the wiki page from source files and publish through a standard-library Python tool that defaults to dry run.</li>
-          <li><strong>Validate before publishing:</strong> tested all three guards against deliberately corrupted input, covering document structure and preservation of the 23 figures.</li>
-          <li><strong>Make guidance easier to follow:</strong> separate first-time user instructions from administration tasks and give readers one clear route for help.</li>
-        </ul>
+        <p class="project-outcome">Published a reviewed runbook with <strong>separate instructions for users and administrators</strong>. Validation blocked malformed documents and unexpected or missing figure references before publication.</p>
+        <p class="project-problem">A manually edited wiki runbook had drifted, and changes could reach readers before anyone reviewed them.</p>
+        <p class="project-problem">I moved authoring into source control, generated the wiki page with a standard-library Python tool that defaulted to dry run, and tested the publish checks against deliberately malformed input.</p>
+        <p class="project-problem"><strong>Status.</strong> The workflow was used to publish the runbook.</p>
         <div class="project-stack">
           <span class="project-stack-label">Stack</span>
           <div class="tags">
-            <span class="tag">Python (standard library only)</span>
+            <span class="tag">Python standard library</span>
             <span class="tag">Confluence REST API</span>
             <span class="tag">XML</span>
-            <span class="tag">Technical writing</span>
+            <span class="tag">Docs as code</span>
           </div>
         </div>
-      </div>
-
-    </div>
+      </article>
+    </section>
 
     <h2 class="section-heading">How I work</h2>
     <div class="principles">
@@ -241,12 +206,12 @@
         <p>Anything that writes, posts or deploys starts in report-only mode. Writing is an explicit flag someone has to type.</p>
       </div>
       <div class="principle">
-        <h3>Idempotent, so a re-run is boring</h3>
-        <p>Running it twice does nothing the second time. That is what makes automation safe to hand to someone else.</p>
+        <h3>Safe to run again</h3>
+        <p>A second run should leave matching configuration in place.</p>
       </div>
       <div class="principle">
-        <h3>A gate between every stage</h3>
-        <p>Shadow, then narrow, then wide — never coupled. Plus a kill switch, because the useful question is how it stops.</p>
+        <h3>Review each rollout stage</h3>
+        <p>Evaluate in shadow mode, then review the results before a limited rollout. Keep a way to stop the workflow.</p>
       </div>
       <div class="principle">
         <h3>Design from live data</h3>
